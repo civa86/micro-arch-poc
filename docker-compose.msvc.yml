@@ -10,8 +10,8 @@ services:
   # UUID Generator Microservice
   uuid-svc:
     build:
-      context: uuid-generator/
+      context: microservices/uuid-generator/
     volumes:
-      - ./logback.xml:/uuid-generator/log_config.xml
+      - ./microservices/logback.xml:/uuid-generator/log_config.xml
     ports:
       - "10001:3000"

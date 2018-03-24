@@ -1,0 +1,17 @@
+version: '2.3'
+
+services:
+  # Counter Microservice
+  # counter-svc:
+  #   build:
+  #     context: counter/
+  #   ports:
+  #     - "10000:8080"
+  # UUID Generator Microservice
+  uuid-svc:
+    build:
+      context: uuid-generator/
+    volumes:
+      - ./logback.xml:/uuid-generator/log_config.xml
+    ports:
+      - "10001:3000"

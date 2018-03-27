@@ -44,8 +44,10 @@ services:
   random-svc:
     build:
       context: microservices/random-service/
+    environment:
+      - ELK_POC_APP_NAME=random-svc
     volumes:
-      - ./microservices/random-service/config/logback.xml:/random-service/log-config.xml
+      - ./config/logback.xml:/random-service/log-config.xml
     command: java -Dlogback.configurationFile=/random-service/log-config.xml -jar /random-service/app.jar
     ports:
       - "3001:3000"
@@ -53,8 +55,10 @@ services:
   uuid-svc:
     build:
       context: microservices/uuid-service/
+    environment:
+      - ELK_POC_APP_NAME=uuid-svc
     volumes:
-      - ./microservices/uuid-service/config/logback.xml:/uuid-service/log-config.xml
+      - ./config/logback.xml:/uuid-service/log-config.xml
     command: java -jar /uuid-service/app.jar --logging.config=/uuid-service/log-config.xml
     ports:
       - "3002:8080"

@@ -1,1 +1,3 @@
-# [Architectural P.O.C.] Docker Compose - JVM MicroServices - ELK
+# ELK Tracking P.O.C.
+
+ELK - JVM MicroServices - Docker Containers

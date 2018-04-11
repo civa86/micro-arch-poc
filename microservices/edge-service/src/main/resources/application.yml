@@ -13,8 +13,8 @@ zuul:
 
 hystrix:
   command:
-    uuid-service:
+    default:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: ...
+            timeoutInMilliseconds: 10000

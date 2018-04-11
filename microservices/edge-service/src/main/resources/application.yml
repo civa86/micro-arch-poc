@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: edge-service
+
+zuul:
+  routes:
+    uuid:
+      path: /uuid/**
+      serviceId: uuid-service
+
+hystrix:
+  command:
+    uuid-service:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: ...

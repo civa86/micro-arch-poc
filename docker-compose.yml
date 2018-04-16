@@ -39,18 +39,36 @@ services:
       - elasticsearch
 
   # --------------------
+  # Database
+  # --------------------
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - persistent-data:/var/lib/mysql
+    command: [--ssl=0]
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 60s
+      retries: 5
+    ports:
+      - "13306:3306"
+
+  # --------------------
   # MicroServices
   # --------------------
-  random-svc:
-    build:
-      context: microservices/random-service/
-    environment:
-      - ELK_POC_APP_NAME=random-svc
-    volumes:
-      - ./config/logback.xml:/random-service/log-config.xml
-    command: java -Dlogback.configurationFile=/random-service/log-config.xml -jar /random-service/app.jar
-    ports:
-      - "3001:3000"
+  # random-svc:
+  #   build:
+  #     context: microservices/random-service/
+  #   environment:
+  #     - ELK_POC_APP_NAME=random-svc
+  #   volumes:
+  #     - ./config/logback.xml:/random-service/log-config.xml
+  #   command: java -Dlogback.configurationFile=/random-service/log-config.xml -jar /random-service/app.jar
+  #   ports:
+  #     - "3001:3000"
 
   uuid-svc:
     build:
@@ -62,4 +80,7 @@ services:
     command: java -jar /uuid-service/app.jar --logging.config=/uuid-service/log-config.xml
     ports:
       - "3002:8080"
+
+volumes:
+  persistent-data:
 

@@ -35,10 +35,12 @@ cd <microservice_folder>
 NETFLIX ARCH
 
 * https://developer.okta.com/blog/2017/06/15/build-microservices-architecture-spring-boot
-* http://callistaenterprise.se/blogg/teknik/2015/04/10/building-microservices-with-spring-cloud-and-netflix-oss-part-1/
+* http://callistaenterprise.se/blogg/teknik/2015/05/20/blog-series-building-microservices/
 * https://stormpath.com/blog/microservices-jwt-spring-boot
 
 OAUTH
+
+* https://github.com/TechPrimers/spring-security-oauth-mysql-example/tree/master/spring-security-auth-server
 
 * https://developer.okta.com/blog/2018/02/13/secure-spring-microservices-with-oauth
 * http://www.baeldung.com/rest-api-spring-oauth2-angularjs

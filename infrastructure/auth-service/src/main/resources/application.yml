@@ -10,3 +10,7 @@ jdbc:
   url: jdbc:mysql://localhost:13306/oauth2?createDatabaseIfNotExist=true
   user: root
   pass: root
+
+security:
+  user:
+    password: password

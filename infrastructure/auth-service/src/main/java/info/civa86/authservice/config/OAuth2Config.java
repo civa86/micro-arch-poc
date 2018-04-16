@@ -33,7 +33,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     private Environment env;
 
     @Autowired
-    @Qualifier("authenticationManagerBean")
+    // @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
 
     @Value("classpath:schema.sql")
@@ -51,11 +51,6 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
         clients.jdbc(dataSource()).withClient("fooClientIdPassword").secret("secret")
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("foo", "read", "write")
-                .accessTokenValiditySeconds(3600) // 1 hour
-                .refreshTokenValiditySeconds(2592000) // 30 days
-
-                .and().withClient("barClientIdPassword").secret("secret")
-                .authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("bar", "read", "write")
                 .accessTokenValiditySeconds(3600) // 1 hour
                 .refreshTokenValiditySeconds(2592000); // 30 days
     }

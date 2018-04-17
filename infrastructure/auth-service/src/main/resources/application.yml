@@ -4,13 +4,16 @@ server:
 spring:
   application:
     name: auth-service
+  datasource:
+      url: jdbc:mysql://localhost:3306/auth_service?createDatabaseIfNotExist=true
+      username: root
+      password: root
+      testWhileIdle: true
+      validationQuery: SELECT
 
-jdbc:
-  driverClassName: com.mysql.jdbc.Driver
-  url: jdbc:mysql://localhost:13306/oauth2?createDatabaseIfNotExist=true
-  user: root
-  pass: root
-
-security:
-  user:
-    password: password
+jpa:
+  hibernate:
+    show-sql: true
+    ddl-auto: update
+    naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    dialect: org.hibernate.dialect.MySQL5Dialect

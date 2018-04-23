@@ -9,7 +9,7 @@ spring:
       username: root
       password: root
       testWhileIdle: true
-      validationQuery: SELECT
+      validationQuery: SELECT 1
 
 jpa:
   hibernate:

@@ -40,6 +40,9 @@ NETFLIX ARCH
 
 OAUTH
 
+* PART1: https://piotrminkowski.wordpress.com/2017/02/22/microservices-security-with-oauth2/
+ PART2: https://piotrminkowski.wordpress.com/2017/12/01/part-2-microservices-security-with-oauth2/
+
 * https://github.com/TechPrimers/spring-security-oauth-mysql-example/tree/master/spring-security-auth-server
 
 * https://developer.okta.com/blog/2018/02/13/secure-spring-microservices-with-oauth

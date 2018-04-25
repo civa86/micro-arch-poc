@@ -21,8 +21,7 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.headers().frameOptions().disable().and().authorizeRequests().antMatchers("/register", "/login").permitAll()
-                .antMatchers("/private/**").authenticated();
+        http.authorizeRequests().antMatchers("/register").permitAll().antMatchers("/private/**").authenticated();
     }
 
     @Override

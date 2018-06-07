@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("serial")
 public class CustomUserDetails extends Users implements UserDetails {
 
     public CustomUserDetails(final Users users) {

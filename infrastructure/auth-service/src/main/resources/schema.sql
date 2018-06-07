@@ -1,65 +1,39 @@
-drop table if exists oauth_client_details;
-create table oauth_client_details (
- client_id VARCHAR(255) PRIMARY KEY,
- resource_ids VARCHAR(255),
- client_secret VARCHAR(255),
- scope VARCHAR(255),
- authorized_grant_types VARCHAR(255),
- web_server_redirect_uri VARCHAR(255),
- authorities VARCHAR(255),
- access_token_validity INTEGER,
- refresh_token_validity INTEGER,
- additional_information VARCHAR(4096),
- autoapprove VARCHAR(255)
-);
+-- TODO: check for autoload schema on application start
 
-create table if not exists oauth_client_token (
- token_id VARCHAR(255),
- token LONG VARBINARY,
- authentication_id VARCHAR(255) PRIMARY KEY,
- user_name VARCHAR(255),
- client_id VARCHAR(255)
-);
+CREATE TABLE IF NOT EXISTS `role` (
+  `role_id` int(11) NOT NULL AUTO_INCREMENT,
+  `role` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf-8;
 
-create table if not exists oauth_access_token (
- token_id VARCHAR(255),
- token LONG VARBINARY,
- authentication_id VARCHAR(255) PRIMARY KEY,
- user_name VARCHAR(255),
- client_id VARCHAR(255),
- authentication LONG VARBINARY,
- refresh_token VARCHAR(255)
-);
+INSERT INTO `role` (`role_id`, `role`) VALUES (1,'ADMIN');
 
-create table if not exists oauth_refresh_token (
- token_id VARCHAR(255),
- token LONG VARBINARY,
- authentication LONG VARBINARY
-);
+CREATE TABLE IF NOT EXISTS `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `active` int(11) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf-8;
 
-create table if not exists oauth_code (
- code VARCHAR(255), authentication LONG VARBINARY
-);
 
-create table if not exists oauth_approvals (
-	userId VARCHAR(255),
-	clientId VARCHAR(255),
-	scope VARCHAR(255),
-	status VARCHAR(10),
-	expiresAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	lastModifiedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+INSERT INTO `user` (`user_id`, `active`, `email`, `last_name`, `name`, `password`)
+VALUES
+	(1,1,'admin@gmail.com','s','Sam','sam'),
+	(2,1,'admin@gmail.com','s','youtube','youtube');
 
-create table if not exists ClientDetails (
- appId VARCHAR(255) PRIMARY KEY,
- resourceIds VARCHAR(255),
- appSecret VARCHAR(255),
- scope VARCHAR(255),
- grantTypes VARCHAR(255),
- redirectUrl VARCHAR(255),
- authorities VARCHAR(255),
- access_token_validity INTEGER,
- refresh_token_validity INTEGER,
- additionalInformation VARCHAR(4096),
- autoApproveScopes VARCHAR(255)
-);
+
+CREATE TABLE IF NOT EXISTS `user_role` (
+  `user_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`),
+  UNIQUE KEY `UK_it77eq964jhfqtu54081ebtio` (`role_id`),
+  CONSTRAINT `FK859n2jvi8ivhui0rl0esws6o` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+  CONSTRAINT `FKa68196081fvovjhkek5m97n3y` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf-8;
+
+INSERT INTO `user_role` (`user_id`, `role_id`)
+VALUES
+	(1,1);

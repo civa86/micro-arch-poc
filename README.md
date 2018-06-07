@@ -30,6 +30,24 @@ cd <microservice_folder>
 ./mvnw spring-boot:run
 ```
 
+### Auth Service
+
+POST /oauth/token HTTP/1.1
+Host: localhost:9000
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic Q2xpZW50SWQ6c2VjcmV0
+Body: username=Sam&password=sam&grant_type=password
+
+### TODO
+
+AUTH-SERVICE
+
+* move token store to db
+* move clientId-secret to db
+* manage refresh token
+* password encoder
+* detailed documentation
+
 ### References
 
 NETFLIX ARCH

@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import info.civa86.authservice.Oauth2ClientPasswordEncoder;
 
 @Configuration
 @EnableAuthorizationServer
@@ -22,7 +22,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     public PasswordEncoder passwordEncoder() {
         // return new BCryptPasswordEncoder();
-        return NoOpPasswordEncoder.getInstance();
+        return Oauth2ClientPasswordEncoder.getInstance();
     }
 
     @Override
@@ -34,7 +34,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // clients.inMemory().withClient("ClientId").secret("secret").authorizedGrantTypes("authorization_code")
-        //         .scopes("user_info").autoApprove(true);
+        // .scopes("user_info").autoApprove(true);
         clients.inMemory().withClient("ClientId").secret("secret")
                 .authorizedGrantTypes("client_credentials", "password")
                 .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT").scopes("read", "write", "trust")

@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 
 @EnableResourceServer
 @Configuration
@@ -21,7 +22,8 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests().antMatchers("/register").permitAll().antMatchers("/private/**").authenticated();
+        http.anonymous().disable().authorizeRequests().antMatchers("/**").authenticated().and().exceptionHandling()
+                .accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
 
     @Override

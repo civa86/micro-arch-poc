@@ -9,20 +9,26 @@ public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
+    @Column(name = "id")
     private int id;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "name")
-    private String name;
     @Column(name = "password")
     private String password;
+
+    @Column(name = "first_name")
+    private String firstName;
+
     @Column(name = "last_name")
     private String lastName;
+
     @Column(name = "active")
     private int active;
+
+    @Column(name = "created_at")
+    private String createdAt;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -33,12 +39,13 @@ public class Users {
 
     public Users(Users users) {
 
-        this.active = users.active;
-        this.email = users.email;
         this.id = users.id;
-        this.lastName = users.lastName;
-        this.name = users.name;
+        this.email = users.email;
         this.password = users.password;
+        this.firstName = users.firstName;
+        this.lastName = users.lastName;
+        this.active = users.active;
+        this.createdAt = users.createdAt;
         this.roles = users.roles;
 
     }
@@ -59,20 +66,20 @@ public class Users {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -89,6 +96,14 @@ public class Users {
 
     public void setActive(int active) {
         this.active = active;
+    }
+
+    public String getCeatedAt() {
+        return createdAt;
+    }
+
+    public void setCeatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Set<Role> getRoles() {

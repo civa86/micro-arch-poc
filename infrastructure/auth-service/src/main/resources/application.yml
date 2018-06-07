@@ -5,15 +5,14 @@ spring:
   application:
     name: auth-service
   datasource:
-      url: jdbc:mysql://localhost:13306/auth_service?createDatabaseIfNotExist=true
-      username: root
-      password: root
-      testWhileIdle: true
-      validationQuery: SELECT 1
-
+    url: jdbc:mysql://localhost:13306/auth_service?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    testWhileIdle: true
+    validationQuery: SELECT 1
 jpa:
   hibernate:
     show-sql: true
-    ddl-auto: create-drop
+    ddl-auto: validate
     naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
     dialect: org.hibernate.dialect.MySQL5Dialect

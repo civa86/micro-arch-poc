@@ -30,6 +30,10 @@ cd <microservice_folder>
 ./mvnw spring-boot:run
 ```
 
+### Eureka Discovery Service
+
+http://localhost:8761/
+
 ### Auth Service
 
 POST /oauth/token HTTP/1.1
@@ -40,8 +44,7 @@ Body: username=Sam&password=sam&grant_type=password
 
 ### TODO
 
-AUTH-SERVICE
-
+> AUTH-SERVICE
 * move token store to db
 * move clientId-secret to db
 * manage refresh token

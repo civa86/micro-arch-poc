@@ -1,46 +1,7 @@
 version: '2.3'
 
 services:
-  # --------------------
-  # ELK Stack
-  # --------------------
-  elasticsearch:
-    build:
-      context: elk/elasticsearch/
-    volumes:
-      - ./config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-
-  logstash:
-    build:
-      context: elk/logstash/
-    volumes:
-      - ./config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
-      - ./config/pipeline:/usr/share/logstash/pipeline:ro
-    ports:
-      - "5000:5000"
-    environment:
-      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-    depends_on:
-      - elasticsearch
-
-  kibana:
-    build:
-      context: elk/kibana/
-    volumes:
-      - ./config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
-    ports:
-      - "5601:5601"
-    depends_on:
-      - elasticsearch
-
-  # --------------------
   # Database
-  # --------------------
   mysql:
     image: mysql:5.7
     environment:
@@ -55,31 +16,18 @@ services:
       retries: 5
     ports:
       - "13306:3306"
-
-  # --------------------
-  # MicroServices
-  # --------------------
-  # random-svc:
-  #   build:
-  #     context: microservices/random-service/
-  #   environment:
-  #     - ELK_POC_APP_NAME=random-svc
-  #   volumes:
-  #     - ./config/logback.xml:/random-service/log-config.xml
-  #   command: java -Dlogback.configurationFile=/random-service/log-config.xml -jar /random-service/app.jar
-  #   ports:
-  #     - "3001:3000"
-
-  uuid-svc:
+  # Eurea discovery service
+  eureka-svc:
     build:
-      context: microservices/uuid-service/
-    environment:
-      - ELK_POC_APP_NAME=uuid-svc
-    volumes:
-      - ./config/logback.xml:/uuid-service/log-config.xml
-    command: java -jar /uuid-service/app.jar --logging.config=/uuid-service/log-config.xml
+      context: infrastructure/eureka-service/
     ports:
-      - "3002:8080"
+      - "8761:8761"
+  # Edge gateway service
+  edge-svc:
+    build:
+      context: infrastructure/edge-service/
+    ports:
+      - "8080:8080"
 
 volumes:
   persistent-data:

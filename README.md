@@ -47,6 +47,9 @@ curl -X POST \
 
 ### TODO
 
+> ALL
+* add healthcheck to all with actuator...http://localhost:8761/actuator/health
+
 > AUTH-SERVICE
 * move token store to db
 * move clientId-secret to db

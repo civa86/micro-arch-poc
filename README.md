@@ -36,11 +36,14 @@ http://localhost:8761/
 
 ### Auth Service
 
-POST /oauth/token HTTP/1.1
-Host: localhost:9000
-Content-Type: application/x-www-form-urlencoded
-Authorization: Basic Q2xpZW50SWQ6c2VjcmV0
-Body: username=Sam&password=sam&grant_type=password
+```bash
+curl -X POST \
+     -u ClientId:secret \
+     -F "username=dario.civallero@gmail.com" \
+     -F "password=password" \
+     -F "grant_type=password" \
+     http://localhost:9000/oauth/token
+```
 
 ### TODO
 

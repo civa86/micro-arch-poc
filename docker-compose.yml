@@ -16,16 +16,28 @@ services:
       retries: 5
     ports:
       - "13306:3306"
+
   # Eurea discovery service
   eureka-svc:
     build:
       context: infrastructure/eureka-service/
+    healthcheck:
+      test: "wget -q -T 1 -s http://localhost:8761/actuator/health"
+      interval: 30s
+      timeout: 5s
+      retries: 3
     ports:
       - "8761:8761"
+
   # Edge gateway service
   edge-svc:
     build:
       context: infrastructure/edge-service/
+    healthcheck:
+      test: "wget -q -T 1 -s http://localhost:8080/actuator/health"
+      interval: 30s
+      timeout: 5s
+      retries: 3
     ports:
       - "8080:8080"
 

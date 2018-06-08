@@ -27,18 +27,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-
         security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        // clients.inMemory().withClient("ClientId").secret("secret").authorizedGrantTypes("authorization_code")
-        // .scopes("user_info").autoApprove(true);
-        clients.inMemory().withClient("ClientId").secret("secret")
-                .authorizedGrantTypes("client_credentials", "password")
-                .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT").scopes("read", "write", "trust")
-                .resourceIds("oauth2-resource").accessTokenValiditySeconds(5000).secret("secret");
+        clients.inMemory().withClient("ClientId").secret("secret").authorizedGrantTypes("password")
+                .scopes("read", "write").accessTokenValiditySeconds(5000);
     }
 
     @Override

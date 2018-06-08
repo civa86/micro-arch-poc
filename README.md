@@ -51,6 +51,7 @@ curl -X POST \
 * remove hystrix
 
 > AUTH-SERVICE
+* make actuator paths public
 * move token store to db
 * move clientId-secret to db
 * manage refresh token

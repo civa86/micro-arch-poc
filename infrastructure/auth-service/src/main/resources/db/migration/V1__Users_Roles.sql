@@ -1,10 +1,10 @@
+-- Structure
+
 CREATE TABLE IF NOT EXISTS `role` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `role` VARCHAR(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
-INSERT INTO `role` (`id`, `role`) VALUES (1, 'ADMIN');
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -18,9 +18,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-INSERT INTO `user` (`email`, `password`, `first_name`, `last_name`)
-VALUES ('dario.civallero@gmail.com', 'password', 'Dario', 'Civallero');
-
 CREATE TABLE IF NOT EXISTS `user_role` (
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
@@ -30,4 +27,8 @@ CREATE TABLE IF NOT EXISTS `user_role` (
   CONSTRAINT `FK_RoleId` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+-- DATA
+
+INSERT INTO `role` (`id`, `role`) VALUES (1, 'ADMIN');
+INSERT INTO `user` (`email`, `password`, `first_name`, `last_name`) VALUES ('dario.civallero@gmail.com', 'password', 'Dario', 'Civallero');
 INSERT INTO `user_role` (`user_id`, `role_id`) VALUES (1, 1);

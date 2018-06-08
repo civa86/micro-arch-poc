@@ -21,14 +21,16 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        http.anonymous().disable().authorizeRequests().antMatchers("/**").authenticated().and().exceptionHandling()
-                .accessDeniedHandler(new OAuth2AccessDeniedHandler());
+        // @formatter:off
+        http.authorizeRequests()
+                .antMatchers("/actuator/**").permitAll()
+                .anyRequest().authenticated()
+            .and()
+            .exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
         auth.parentAuthenticationManager(authenticationManager).userDetailsService(customUserDetailsService);
     }
 }

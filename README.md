@@ -47,8 +47,8 @@ curl -X POST \
 
 ### TODO
 
-> ALL
-* add healthcheck to all with actuator...http://localhost:8761/actuator/health
+> EDGE SERVICE
+* remove hystrix
 
 > AUTH-SERVICE
 * move token store to db

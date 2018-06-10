@@ -9,9 +9,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
+import org.springframework.core.annotation.Order;
 
 @EnableResourceServer
 @Configuration
+@Order(1)
 public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -22,11 +24,18 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
+
+
         http.authorizeRequests()
-                .antMatchers("/actuator/**").permitAll()
-                .anyRequest().authenticated()
-            .and()
+                .antMatchers("/actuator/**")
+                .permitAll()
+                .and()
+            .authorizeRequests()
+                .anyRequest()
+                .authenticated()
+                .and()
             .exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+
     }
 
     @Override

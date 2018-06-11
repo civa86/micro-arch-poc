@@ -34,45 +34,32 @@ cd <microservice_folder>
 
 http://localhost:8761/
 
-### Auth Service
+### Authentication Examples
+
+#### User
+
+> Login
 
 ```bash
 curl -X POST \
-     -u ClientId:secret \
-     -F "username=dario.civallero@gmail.com" \
+     -u clientId:clientSecret \
+     -F "username=user@test.com" \
      -F "password=password" \
      -F "grant_type=password" \
      http://localhost:9000/oauth/token
 ```
 
-### TODO
+> Profile
 
-> EDGE SERVICE
-* remove hystrix
+#### Admin
 
-> AUTH-SERVICE
-* make actuator paths public
-* move token store to db
-* move clientId-secret to db
-* manage refresh token
-* password encoder
-* detailed documentation
+> Login
 
-### References
-
-NETFLIX ARCH
-
-* https://developer.okta.com/blog/2017/06/15/build-microservices-architecture-spring-boot
-* http://callistaenterprise.se/blogg/teknik/2015/05/20/blog-series-building-microservices/
-* https://stormpath.com/blog/microservices-jwt-spring-boot
-
-OAUTH
-
-* PART1: https://piotrminkowski.wordpress.com/2017/02/22/microservices-security-with-oauth2/
- PART2: https://piotrminkowski.wordpress.com/2017/12/01/part-2-microservices-security-with-oauth2/
-
-* https://github.com/TechPrimers/spring-security-oauth-mysql-example/tree/master/spring-security-auth-server
-
-* https://developer.okta.com/blog/2018/02/13/secure-spring-microservices-with-oauth
-* http://www.baeldung.com/rest-api-spring-oauth2-angularjs
-* https://gigsterous.github.io/engineering/2017/03/01/spring-boot-4.html
+```bash
+curl -X POST \
+     -u clientId:clientSecret \
+     -F "username=admin@test.com" \
+     -F "password=password" \
+     -F "grant_type=password" \
+     http://localhost:9000/oauth/token
+```

@@ -10,6 +10,8 @@ spring:
     password: root
     testWhileIdle: true
     validationQuery: SELECT 1
+  flyway:
+    locations: classpath:/db/migration/schema,classpath:/db/migration/data
 jpa:
   hibernate:
     show-sql: true

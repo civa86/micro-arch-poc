@@ -7,6 +7,6 @@ spring:
 
 zuul:
   routes:
-    uuid:
+    uaa:
       path: /uaa/**
       serviceId: auth-service

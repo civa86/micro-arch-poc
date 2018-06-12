@@ -15,7 +15,7 @@ services:
       timeout: 60s
       retries: 5
     ports:
-      - "13306:3306"
+      - "3306"
 
   # Eurea discovery service
   eureka-svc:
@@ -38,8 +38,32 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
+    depends_on:
+      eureka-svc:
+        condition: service_healthy
+    volumes:
+      - ./config/edge-svc.props.yml:/service/application.yml:ro
     ports:
       - "8080:8080"
+
+  # Auth service
+  auth-svc:
+    build:
+      context: infrastructure/auth-service/
+    healthcheck:
+      test: "wget -q -T 1 -s http://localhost:9000/actuator/health"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      mysql:
+        condition: service_healthy
+      eureka-svc:
+        condition: service_healthy
+    volumes:
+      - ./config/auth-svc.props.yml:/service/application.yml:ro
+    ports:
+      - "9000"
 
 volumes:
   persistent-data:

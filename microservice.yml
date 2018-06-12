@@ -1,14 +1,14 @@
 version: '2.3'
 
 services:
-  uuid-svc:
-    build:
-      context: microservices/uuid-service/
-    environment:
-      - ELK_POC_APP_NAME=uuid-svc
-    volumes:
-      - ./config/logback.xml:/uuid-service/log-config.xml
-    command: java -jar /uuid-service/app.jar --logging.config=/uuid-service/log-config.xml
-    ports:
-      - "3002:8080"
+  # uuid-svc:
+  #   build:
+  #     context: microservices/uuid-service/
+  #   environment:
+  #     - ELK_POC_APP_NAME=uuid-svc
+  #   volumes:
+  #     - ./config/logback.xml:/uuid-service/log-config.xml
+  #   command: java -jar /uuid-service/app.jar --logging.config=/uuid-service/log-config.xml
+  #   ports:
+  #     - "3002:8080"
 

@@ -1,0 +1,9 @@
+version: '2.3'
+
+services:
+  mysql:
+    ports:
+      - "3306"
+  auth-svc:
+    ports:
+      - "9000"

@@ -63,7 +63,7 @@ services:
     volumes:
       - ./config/auth-svc.props.yml:/service/application.yml:ro
     ports:
-      - "9000"
+      - "9000:9000"
 
 volumes:
   persistent-data:

@@ -1,10 +1,10 @@
-# ELK Tracking P.O.C.
+# JVM Microservices Architecture
 
-ELK - JVM MicroServices - Docker Containers
+This project contains a P.O.C of a microservices architecture that runs under JVM (Java, Clojure).
 
-## JVM Microservices Architecture
+Docker...ELK...
 
-### Spring Package Creator
+## Spring Boot Package Creator
 
 ###### Website
 
@@ -23,32 +23,21 @@ ELK - JVM MicroServices - Docker Containers
 `Generic Service`: Eureka Discovery, Actuator, Web, DevTools
 
 
-### Usage
+## Usage
 
 ```bash
 cd <microservice_folder>
 ./mvnw spring-boot:run
 ```
 
-### Eureka Discovery Service
+## Eureka Discovery Service
+
+TODO:  Move under eureka readme
 
 http://localhost:8761/
 
-### Authentication API Examples
+## JVM Microservices Architecture
 
-> Login
-
-```bash
-curl -X POST \
-     -u <CLIENT_ID>:<CLIENT_SECRET> \
-     -F "username=<USERNAME>" \
-     -F "password=<PASSWORD>" \
-     -F "grant_type=password" \
-     http://localhost:9000/oauth/token
-```
-
-> Profile Data
-
-```bash
-curl -H "Authorization: Bearer <ACCESS_TOKEN>" http://localhost:9000/user
-```
+* [Eureka Service]()
+* [Edge Service]()
+* [Auth Service](./infrastructure/auth-service/README.md)

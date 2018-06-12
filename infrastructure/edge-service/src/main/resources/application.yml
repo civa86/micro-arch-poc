@@ -8,13 +8,5 @@ spring:
 zuul:
   routes:
     uuid:
-      path: /uuid/**
-      serviceId: uuid-service
-
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 10000
+      path: /uaa/**
+      serviceId: auth-service

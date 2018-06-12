@@ -50,5 +50,5 @@ curl -X POST \
 > Profile Data
 
 ```bash
-curl -H "Authorization: Bearer <ACCESS_TOKEN>" http://localhost:9000/me
+curl -H "Authorization: Bearer <ACCESS_TOKEN>" http://localhost:9000/user
 ```

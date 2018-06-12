@@ -15,7 +15,7 @@ services:
       timeout: 60s
       retries: 5
     ports:
-      - "3306"
+      - "13306:3306"
 
   # Eurea discovery service
   eureka-svc:

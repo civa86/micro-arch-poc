@@ -34,32 +34,21 @@ cd <microservice_folder>
 
 http://localhost:8761/
 
-### Authentication Examples
-
-#### User
+### Authentication API Examples
 
 > Login
 
 ```bash
 curl -X POST \
-     -u clientId:clientSecret \
-     -F "username=user@test.com" \
-     -F "password=password" \
+     -u <CLIENT_ID>:<CLIENT_SECRET> \
+     -F "username=<USERNAME>" \
+     -F "password=<PASSWORD>" \
      -F "grant_type=password" \
      http://localhost:9000/oauth/token
 ```
 
-> Profile
-
-#### Admin
-
-> Login
+> Profile Data
 
 ```bash
-curl -X POST \
-     -u clientId:clientSecret \
-     -F "username=admin@test.com" \
-     -F "password=password" \
-     -F "grant_type=password" \
-     http://localhost:9000/oauth/token
+curl -H "Authorization: Bearer <ACCESS_TOKEN>" http://localhost:9000/me
 ```

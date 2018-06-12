@@ -38,21 +38,21 @@ None
 
 **Request**
 
-GET /crypt?string=EXAMPLE-STRING
+GET /crypt?string=EXAMPLE_STRING
 
 **Response**
 
 ```json
 {
-    "decoded": "EXAMPLE-STRING",
-    "encoded": "$2a$10$L0C.5N3mHhVdpVyg3mY.muypCEjt54Sk3iL/ZVbzT8Qmxnu/AcXAO"
+    "decoded": "EXAMPLE_STRING",
+    "encoded": "$2a$10$8.WexK.3rPN0tI.CqbQUae1tAMzYbQoAKjn9JSLzoM5gB7QwGcp6m"
 }
 ```
 
 **Example CURL**
 
 ```bash
-curl http://localhost:9000/crypt?string=EXAMPLE-STRING
+curl http://localhost:9000/crypt?string=EXAMPLE_STRING
 ```
 
 ## Register User
@@ -112,7 +112,7 @@ Api to obtain the access token (login)
 
 **Authorization**
 
-Basic $CLIENT-ID:$CLIENT-SECRET
+Basic $CLIENT_ID:$CLIENT_SECRET
 
 **Request**
 
@@ -155,7 +155,7 @@ Api to get logged user profile data
 
 **Authorization**
 
-Bearer $ACCESS-TOKEN
+Bearer $ACCESS_TOKEN
 
 **Request**
 
@@ -194,4 +194,40 @@ GET /user
 
 ```bash
 curl -H "Authorization: Bearer $ACCESS_TOKEN" http://localhost:9000/user
+```
+
+## Check Token
+
+Api to check token validity
+
+**Authorization**
+
+Basic $CLIENT_ID:$CLIENT_SECRET
+
+**Request**
+
+GET /oauth/check_token?token=$ACCESS_TOKEN
+
+**Response**
+
+```json
+{
+    "active": true,
+    "exp": 1528846623,
+    "user_name": "user@test.com",
+    "authorities": [
+        "ROLE_USER"
+    ],
+    "client_id": "clientId",
+    "scope": [
+        "read",
+        "write"
+    ]
+}
+```
+
+**Example CURL**
+
+```bash
+curl -u "clientId:clientSecret" http://localhost:9000/oauth/check_token?token=$ACCESS_TOKEN
 ```

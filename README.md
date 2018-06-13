@@ -1,4 +1,4 @@
-# JVM Microservices Architecture
+# [P.O.C.] Microservices Architecture
 
 This project contains a P.O.C of a microservices architecture that runs under JVM (Java, Clojure).
 

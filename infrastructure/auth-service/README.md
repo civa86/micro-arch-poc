@@ -2,6 +2,8 @@
 
 MicroService to manage Authentication with OAuth2, Users and Roles.
 
+A PostMan Collection can be found in the [docs](../../docs) folder
+
 ## Get Service Status
 
 Api to discover the service status.
@@ -133,7 +135,7 @@ grant_type=password
     "access_token": "4ead95e7-575e-4187-84b0-11b79bd27dfe",
     "token_type": "bearer",
     "refresh_token": "486d0aab-dab4-45b9-b6d9-63dd0be7306b",
-    "expires_in": 35999,
+    "expires_in": 1799,
     "scope": "read write"
 }
 ```
@@ -230,4 +232,45 @@ GET /oauth/check_token?token=$ACCESS_TOKEN
 
 ```bash
 curl -u "clientId:clientSecret" http://localhost:9000/oauth/check_token?token=$ACCESS_TOKEN
+```
+
+## Refresh Token
+
+Api to refresh access token
+
+**Authorization**
+
+Basic $CLIENT_ID:$CLIENT_SECRET
+
+**Request**
+
+POST /oauth/token
+
+Content-Type application/x-www-form-urlencoded
+
+```
+refresh_token=$REFRESH_TOKEN
+grant_type=refresh_token
+```
+
+**Response**
+
+```json
+{
+    "access_token": "7bb7d24d-72bc-48e1-9f77-c249887721ce",
+    "token_type": "bearer",
+    "refresh_token": "82e7dc4e-4595-44cd-bddc-82ecc2237bf4",
+    "expires_in": 1799,
+    "scope": "read write"
+}
+```
+
+**Example CURL**
+
+```bash
+curl -X POST \
+     -u clientId:clientSecret \
+     -F "refresh_token=$REFRESH_TOKEN" \
+     -F "grant_type=refresh_token" \
+     http://localhost:9000/oauth/token
 ```

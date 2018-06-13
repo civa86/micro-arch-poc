@@ -7,7 +7,12 @@ spring:
 
 zuul:
   routes:
+    # Authentication
     uaa:
       path: /uaa/**
       sensitive-headers: true
       serviceId: auth-service
+    # Microservices
+    uuid:
+      path: /uuid/**
+      serviceId: uuid-service

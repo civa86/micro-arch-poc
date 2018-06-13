@@ -198,9 +198,9 @@ GET /user
 curl -H "Authorization: Bearer $ACCESS_TOKEN" http://localhost:9000/user
 ```
 
-## Check Token
+## Check Access Token
 
-Api to check token validity
+Api to check access token validity
 
 **Authorization**
 
@@ -236,7 +236,7 @@ curl -u "clientId:clientSecret" http://localhost:9000/oauth/check_token?token=$A
 
 ## Refresh Token
 
-Api to refresh access token
+Api to regenerate both access and refresh token
 
 **Authorization**
 

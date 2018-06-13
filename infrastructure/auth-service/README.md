@@ -2,7 +2,7 @@
 
 MicroService to manage Authentication with OAuth2, Users and Roles.
 
-A PostMan Collection can be found in the [docs](../../docs) folder
+PostMan Collection can be found [here](../../docs/MicroservicesPOC.postman_collection.json).
 
 ## Get Service Status
 

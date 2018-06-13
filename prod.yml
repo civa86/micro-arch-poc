@@ -2,8 +2,13 @@ version: '2.3'
 
 services:
   mysql:
+    volumes:
+      - persistent-data:/var/lib/mysql
     ports:
       - "3306"
   auth-svc:
     ports:
       - "9000"
+
+volumes:
+  persistent-data:

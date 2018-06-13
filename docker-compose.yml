@@ -6,8 +6,6 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - persistent-data:/var/lib/mysql
     command: [--ssl=0]
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-uroot", "-proot"]
@@ -64,7 +62,3 @@ services:
       - ./config/auth-svc.props.yml:/service/application.yml:ro
     ports:
       - "9000:9000"
-
-volumes:
-  persistent-data:
-

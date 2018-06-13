@@ -9,4 +9,5 @@ zuul:
   routes:
     uaa:
       path: /uaa/**
+      sensitive-headers: true
       serviceId: auth-service

@@ -3,7 +3,7 @@ INSERT INTO `oauth_client_details`
      `web_server_redirect_uri`, `authorities`, `access_token_validity`,
      `refresh_token_validity`, `additional_information`, `autoapprove`)
 VALUES
-    ('clientId', '$2a$10$E3KmQE2Zju.GBm8NWvD5/e1DOE6UOHBB1dlEvNc30SUyWOOisLssu', 'read,write', 'password,refresh_token', null, null, 36000, 36000, null, true);
+    ('clientId', '$2a$10$E3KmQE2Zju.GBm8NWvD5/e1DOE6UOHBB1dlEvNc30SUyWOOisLssu', 'read,write', 'password,refresh_token', null, null, 1800, 86400, null, true);
 
 INSERT INTO `role` (`id`, `role`) VALUES (1, 'USER');
 INSERT INTO `role` (`id`, `role`) VALUES (2, 'ADMIN');

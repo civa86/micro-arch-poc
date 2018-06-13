@@ -8,12 +8,14 @@ import java.util.Set;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import info.civa86.authservice.exceptions.EmailAlreadyPresentException;
@@ -38,6 +40,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/user")
+    @ResponseStatus(HttpStatus.CREATED)
     public Users createUser(@RequestBody @Valid Users user) throws EmailAlreadyPresentException {
         if (this.userService.isEmailAlreadyRegistered(user.getEmail()) == true) {
             throw new EmailAlreadyPresentException();

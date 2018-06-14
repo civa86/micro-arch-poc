@@ -1,6 +1,10 @@
 server:
   port: 8080
 
+management:
+  security:
+    enabled: false
+
 spring:
   application:
     name: edge-service

@@ -22,7 +22,6 @@ Docker...ELK...
 
 `Generic Service`: Eureka Discovery, Actuator, Web, DevTools
 
-
 ## Usage
 
 ```bash
@@ -35,6 +34,10 @@ cd <microservice_folder>
 * [Eureka Service](./infrastructure/eureka-service/README.md)
 * [Edge Service]()
 * [Auth Service](./infrastructure/auth-service/README.md)
+
+## API Usage Examples
+
+PostMan Collection can be found [here](docs/postman-collection.json).
 
 ## References
 

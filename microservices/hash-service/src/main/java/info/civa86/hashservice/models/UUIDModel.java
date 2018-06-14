@@ -1,4 +1,4 @@
-package info.civa86.uuidservice.models;
+package info.civa86.hashservice.models;
 
 public class UUIDModel {
 

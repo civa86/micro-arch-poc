@@ -3,4 +3,4 @@ server:
 
 spring:
   application:
-    name: uuid-service
+    name: hash-service

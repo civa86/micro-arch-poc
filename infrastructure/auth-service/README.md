@@ -2,8 +2,6 @@
 
 MicroService to manage Authentication with OAuth2, Users and Roles.
 
-PostMan Collection can be found [here](../../docs/MicroservicesPOC.postman_collection.json).
-
 ## Get Service Status
 
 Api to discover the service status.

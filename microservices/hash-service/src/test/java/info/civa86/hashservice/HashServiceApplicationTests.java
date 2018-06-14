@@ -1,4 +1,4 @@
-package info.civa86.uuidservice;
+package info.civa86.hashservice;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UuidServiceApplicationTests {
+public class HashServiceApplicationTests {
 
 	@Test
 	public void contextLoads() {

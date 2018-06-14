@@ -42,6 +42,28 @@ cd <microservice_folder>
 
 PostMan Collection can be found [here](docs/postman-collection.json).
 
+## Docker Compose
+
+Run inside docker with compose.
+
+For compose commands refer to the [official documentation](https://docs.docker.com/compose/)
+
+Example architectures:
+
+```bash
+# Run command: infrastructure only
+docker-compose $COMPOSE_COMMAND
+
+# Run command: infrastructure + microservices
+docker-compose -f docker-compose.yml -f microservices.yml $COMPOSE_COMMAND
+
+# Run command: infrastructure + microservices + elastic search
+docker-compose -f docker-compose.yml -f microservices.yml -f elk.yml $COMPOSE_COMMAND
+
+# Run command: architecture in production mode (private network and persistence)
+docker-compose -f docker-compose.yml -f microservices.yml -f elk.yml -f prod.yml $COMPOSE_COMMAND
+```
+
 ## References
 
 * https://developer.okta.com/blog/2017/06/15/build-microservices-architecture-spring-boot

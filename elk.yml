@@ -5,7 +5,7 @@ services:
     build:
       context: elk/elasticsearch/
     volumes:
-      - ./config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - ./config/elk/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -16,8 +16,8 @@ services:
     build:
       context: elk/logstash/
     volumes:
-      - ./config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
-      - ./config/pipeline:/usr/share/logstash/pipeline:ro
+      - ./config/elk/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./config/elk/pipeline:/usr/share/logstash/pipeline:ro
     ports:
       - "5000:5000"
     environment:
@@ -29,7 +29,7 @@ services:
     build:
       context: elk/kibana/
     volumes:
-      - ./config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+      - ./config/elk/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
     ports:
       - "5601:5601"
     depends_on:

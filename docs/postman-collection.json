@@ -7,7 +7,7 @@
 	"item": [
 		{
 			"name": "AuthService",
-			"description": null,
+			"description": "Service for authentication and users management",
 			"item": [
 				{
 					"name": "Service Status",
@@ -281,11 +281,33 @@
 					},
 					"response": []
 				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "916835d3-1a4a-4ce8-9ea1-f5ba924d1e54",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "16c06f10-954f-477d-8196-d473987c55b8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
 			]
 		},
 		{
 			"name": "HashService",
-			"description": null,
+			"description": "Service to hash strings",
 			"item": [
 				{
 					"name": "Service Status",
@@ -362,6 +384,447 @@
 						"description": "encode a string with BCrypt algorithm."
 					},
 					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ce3dd474-555d-4552-9005-e9fce32c3ac4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9d8716ab-ab6c-46ff-abe7-535a8083315e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Edge",
+			"description": "Edge Proxy",
+			"item": [
+				{
+					"name": "AuthService",
+					"description": "Service for authentication and users management",
+					"item": [
+						{
+							"name": "Service Status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8080/uaa/actuator/health",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"uaa",
+										"actuator",
+										"health"
+									]
+								},
+								"description": "check the service status"
+							},
+							"response": []
+						},
+						{
+							"name": "Register User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"dario@gmail.com\",\n\t\"password\": \"P@55w0rd!\",\n\t\"firstName\": \"Dario\",\n\t\"lastName\": \"Civallero\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/uaa/user",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"uaa",
+										"user"
+									]
+								},
+								"description": "register a new user"
+							},
+							"response": []
+						},
+						{
+							"name": "Obtain Access Token",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "clientSecret",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "clientId",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "user@test.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8080/uaa/oauth/token",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"uaa",
+										"oauth",
+										"token"
+									]
+								},
+								"description": "obtain the access token (login)"
+							},
+							"response": []
+						},
+						{
+							"name": "User Profile Data",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer c8e89054-b881-45fa-b7ac-c3c44331244e"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8080/uaa/user",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"uaa",
+										"user"
+									]
+								},
+								"description": "get logged user profile data"
+							},
+							"response": []
+						},
+						{
+							"name": "Check Access Token",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "clientSecret",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "clientId",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8080/uaa/oauth/check_token?token=c8e89054-b881-45fa-b7ac-c3c44331244e",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"uaa",
+										"oauth",
+										"check_token"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "c8e89054-b881-45fa-b7ac-c3c44331244e"
+										}
+									]
+								},
+								"description": "check access token validity"
+							},
+							"response": []
+						},
+						{
+							"name": "Refresh Token",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "clientSecret",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "clientId",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "refresh_token",
+											"value": "63968e36-0d95-41b9-ba4a-9a2fbaba4e7e",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8080/uaa/oauth/token",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"uaa",
+										"oauth",
+										"token"
+									]
+								},
+								"description": "regenerate both access and refresh token"
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "916835d3-1a4a-4ce8-9ea1-f5ba924d1e54",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "16c06f10-954f-477d-8196-d473987c55b8",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "HashService",
+					"description": "Service to hash strings",
+					"item": [
+						{
+							"name": "Service Status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8080/hash/actuator/health",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hash",
+										"actuator",
+										"health"
+									]
+								},
+								"description": "check the service status"
+							},
+							"response": []
+						},
+						{
+							"name": "Generate UUID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8080/hash/uuid",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hash",
+										"uuid"
+									]
+								},
+								"description": "generate a UUID"
+							},
+							"response": []
+						},
+						{
+							"name": "BCrypt String",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8080/hash/bcrypt?string=test",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hash",
+										"bcrypt"
+									],
+									"query": [
+										{
+											"key": "string",
+											"value": "test"
+										}
+									]
+								},
+								"description": "encode a string with BCrypt algorithm."
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ce3dd474-555d-4552-9005-e9fce32c3ac4",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9d8716ab-ab6c-46ff-abe7-535a8083315e",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
 				}
 			]
 		}

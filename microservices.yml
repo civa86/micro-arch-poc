@@ -12,6 +12,8 @@ services:
     depends_on:
       eureka:
         condition: service_healthy
+    volumes:
+      - ./config/hash.props.yml:/service/application.yml:ro
     ports:
       - "8081:8081"
 

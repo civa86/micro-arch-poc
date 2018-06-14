@@ -23,5 +23,5 @@ zuul:
       serviceId: auth-service
     # Microservices
     uuid:
-      path: /uuid/**
-      serviceId: uuid-service
+      path: /hash/**
+      serviceId: hash-service

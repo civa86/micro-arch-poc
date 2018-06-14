@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: auth-service
+  oauth:
+    client:
+      id: clientId
+      secret: clientSecret
   datasource:
     url: jdbc:mysql://localhost:13306/auth_service?createDatabaseIfNotExist=true
     username: root

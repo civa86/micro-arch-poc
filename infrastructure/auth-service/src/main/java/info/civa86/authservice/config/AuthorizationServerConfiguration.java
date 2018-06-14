@@ -5,8 +5,10 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -25,6 +27,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private UserDetailsService userDetailsService;
     @Autowired
     private DataSource dataSource;
+    @Autowired
+    private Environment env;
 
     @Bean
     public TokenStore tokenStore() {
@@ -38,7 +42,19 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.jdbc(dataSource);
+        String clientId = env.getProperty("spring.oauth.client.id");
+        String clientSecret = env.getProperty("spring.oauth.client.secret");
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        clients
+                .inMemory()
+                .withClient(clientId)
+                .secret(passwordEncoder.encode(clientSecret))
+                .scopes("micro-arch-poc")
+                .authorizedGrantTypes("password", "refresh_token")
+                .accessTokenValiditySeconds(1800)
+                .refreshTokenValiditySeconds(86400)
+                .autoApprove(true);
     }
 
     @Override

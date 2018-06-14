@@ -1,11 +1,11 @@
 version: '2.3'
 
 services:
-  # uuid-svc:
+  # uuid:
   #   build:
   #     context: microservices/uuid-service/
   #   environment:
-  #     - ELK_POC_APP_NAME=uuid-svc
+  #     - ELK_POC_APP_NAME=uuid
   #   volumes:
   #     - ./config/logback.xml:/uuid-service/log-config.xml
   #   command: java -jar /uuid-service/app.jar --logging.config=/uuid-service/log-config.xml

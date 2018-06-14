@@ -1,9 +1,18 @@
 server:
   port: 8080
 
+management:
+  security:
+    enabled: false
+
 spring:
   application:
     name: edge-service
+  oauth:
+    checkTokenUrl: http://localhost:8080/uaa/oauth/check_token
+    client:
+      id: clientId
+      secret: clientSecret
 
 zuul:
   routes:

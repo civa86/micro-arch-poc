@@ -16,7 +16,7 @@ services:
       - "13306:3306"
 
   # Eurea discovery service
-  eureka-svc:
+  eureka:
     build:
       context: infrastructure/eureka-service/
     healthcheck:
@@ -28,7 +28,7 @@ services:
       - "8761:8761"
 
   # Edge gateway service
-  edge-svc:
+  edge:
     build:
       context: infrastructure/edge-service/
     healthcheck:
@@ -37,15 +37,15 @@ services:
       timeout: 5s
       retries: 3
     depends_on:
-      eureka-svc:
+      eureka:
         condition: service_healthy
     volumes:
-      - ./config/edge-svc.props.yml:/service/application.yml:ro
+      - ./config/edge.props.yml:/service/application.yml:ro
     ports:
       - "8080:8080"
 
   # Auth service
-  auth-svc:
+  auth:
     build:
       context: infrastructure/auth-service/
     healthcheck:
@@ -56,9 +56,9 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-      eureka-svc:
+      eureka:
         condition: service_healthy
     volumes:
-      - ./config/auth-svc.props.yml:/service/application.yml:ro
+      - ./config/auth.props.yml:/service/application.yml:ro
     ports:
       - "9000:9000"

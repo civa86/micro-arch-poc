@@ -30,14 +30,20 @@ cd <microservice_folder>
 ./mvnw spring-boot:run
 ```
 
-## Eureka Discovery Service
-
-TODO:  Move under eureka readme
-
-http://localhost:8761/
-
 ## JVM Microservices Architecture
 
-* [Eureka Service]()
+* [Eureka Service](./infrastructure/eureka-service/README.md)
 * [Edge Service]()
 * [Auth Service](./infrastructure/auth-service/README.md)
+
+## References
+
+* https://developer.okta.com/blog/2017/06/15/build-microservices-architecture-spring-boot
+* http://callistaenterprise.se/blogg/teknik/2015/05/20/blog-series-building-microservices/
+* https://stormpath.com/blog/microservices-jwt-spring-boot
+* https://piotrminkowski.wordpress.com/2017/02/22/microservices-security-with-oauth2/
+* https://piotrminkowski.wordpress.com/2017/12/01/part-2-microservices-security-with-oauth2/
+* https://github.com/TechPrimers/spring-security-oauth-mysql-example/tree/master/spring-security-auth-server
+* https://developer.okta.com/blog/2018/02/13/secure-spring-microservices-with-oauth
+* http://www.baeldung.com/rest-api-spring-oauth2-angularjs
+* https://gigsterous.github.io/engineering/2017/03/01/spring-boot-4.html

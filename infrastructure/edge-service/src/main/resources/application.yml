@@ -8,10 +8,11 @@ management:
 spring:
   application:
     name: edge-service
-  checkToken:
-    serviceUrl: http://localhost:8080/uaa/oauth/check_token
-    clientId: clientId
-    clientSecret: clientSecret
+  oauth:
+    checkTokenUrl: http://localhost:8080/uaa/oauth/check_token
+    client:
+      id: clientId
+      secret: clientSecret
 
 zuul:
   routes:

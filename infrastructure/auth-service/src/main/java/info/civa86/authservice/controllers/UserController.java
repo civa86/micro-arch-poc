@@ -61,7 +61,6 @@ public class UserController {
         newUser.setActive(1);
         newUser.setRoles(roles);
 
-        System.out.println(newUser.getPassword());
         this.userService.saveUser(newUser);
 
         return newUser;

@@ -22,7 +22,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         //@formatter:off
 		http
 			.authorizeRequests()
-			.antMatchers("/uuid/**").hasRole("USER")
+			.antMatchers("/uuid/**").hasRole("ADMIN")
 			.anyRequest().permitAll()
 			.and()
 			.csrf().disable();
@@ -32,9 +32,9 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Primary
     @Bean
     public RemoteTokenServices tokenServices() {
-        String clientId = env.getProperty("spring.checkToken.clientId");
-        String clientSecret = env.getProperty("spring.checkToken.clientSecret");
-        String remoteTokenUrl = env.getProperty("spring.checkToken.serviceUrl");
+        String remoteTokenUrl = env.getProperty("spring.oauth.checkTokenUrl");
+        String clientId = env.getProperty("spring.oauth.client.id");
+        String clientSecret = env.getProperty("spring.oauth.client.secret");
         final RemoteTokenServices tokenService = new RemoteTokenServices();
 
         tokenService.setCheckTokenEndpointUrl(remoteTokenUrl);

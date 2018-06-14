@@ -31,16 +31,12 @@ cd <microservice_folder>
 
 ## JVM Microservices Architecture
 
-###### Infrastructure
-
-* [Eureka Service](infrastructure/eureka-service/README.md)
-* [Edge Service]()
-
-###### Authentication
-* [Auth Service](infrastructure/auth-service/README.md)
-
-###### Microservices
-* [Hash Service](microservices/hash-service/README.md)
+* Infrastructure
+    * [Eureka Service](infrastructure/eureka-service/README.md)
+    * [Edge Service](infrastructure/edge-service/README.md)
+    * [Auth Service](infrastructure/auth-service/README.md)
+* Microservices
+    * [Hash Service](microservices/hash-service/README.md)
 
 ## API Usage Examples
 

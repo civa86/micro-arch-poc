@@ -1,21 +1,23 @@
 {
 	"info": {
+		"_postman_id": "b26f15ac-9f8f-4b62-b82e-6b708a9c87e7",
 		"name": "micro-arch-poc",
-		"_postman_id": "7ca0e977-5d95-8d74-d720-6a03cf8c47c1",
-		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "AuthService",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "Service Status",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "localhost:9000/actuator/health",
 							"host": [
@@ -28,33 +30,6 @@
 							]
 						},
 						"description": "check the service status"
-					},
-					"response": []
-				},
-				{
-					"name": "Encode String",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "localhost:9000/crypt?string=test",
-							"host": [
-								"localhost"
-							],
-							"port": "9000",
-							"path": [
-								"crypt"
-							],
-							"query": [
-								{
-									"key": "string",
-									"value": "test",
-									"equals": true
-								}
-							]
-						},
-						"description": "encode a string with BCrypt algorithm."
 					},
 					"response": []
 				},
@@ -127,19 +102,16 @@
 								{
 									"key": "username",
 									"value": "user@test.com",
-									"description": "",
 									"type": "text"
 								},
 								{
 									"key": "password",
 									"value": "password",
-									"description": "",
 									"type": "text"
 								},
 								{
 									"key": "grant_type",
 									"value": "password",
-									"description": "",
 									"type": "text"
 								}
 							]
@@ -169,7 +141,10 @@
 								"value": "Bearer c8e89054-b881-45fa-b7ac-c3c44331244e"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "localhost:9000/user",
 							"host": [
@@ -214,7 +189,10 @@
 						},
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:9000/oauth/check_token?token=c8e89054-b881-45fa-b7ac-c3c44331244e",
 							"protocol": "http",
@@ -229,8 +207,7 @@
 							"query": [
 								{
 									"key": "token",
-									"value": "c8e89054-b881-45fa-b7ac-c3c44331244e",
-									"equals": true
+									"value": "c8e89054-b881-45fa-b7ac-c3c44331244e"
 								}
 							]
 						},
@@ -279,13 +256,11 @@
 								{
 									"key": "refresh_token",
 									"value": "63968e36-0d95-41b9-ba4a-9a2fbaba4e7e",
-									"description": "",
 									"type": "text"
 								},
 								{
 									"key": "grant_type",
 									"value": "refresh_token",
-									"description": "",
 									"type": "text"
 								}
 							]
@@ -309,15 +284,18 @@
 			]
 		},
 		{
-			"name": "UUIDService",
-			"description": "",
+			"name": "HashService",
+			"description": null,
 			"item": [
 				{
 					"name": "Service Status",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "localhost:8081/actuator/health",
 							"host": [
@@ -338,15 +316,50 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "localhost:8081",
+							"raw": "localhost:8081/uuid",
 							"host": [
 								"localhost"
 							],
-							"port": "8081"
+							"port": "8081",
+							"path": [
+								"uuid"
+							]
 						},
 						"description": "generate a UUID"
+					},
+					"response": []
+				},
+				{
+					"name": "BCrypt String",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/bcrypt?string=test",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"bcrypt"
+							],
+							"query": [
+								{
+									"key": "string",
+									"value": "test"
+								}
+							]
+						},
+						"description": "encode a string with BCrypt algorithm."
 					},
 					"response": []
 				}

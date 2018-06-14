@@ -10,4 +10,5 @@ public class HashServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HashServiceApplication.class, args);
 	}
+
 }

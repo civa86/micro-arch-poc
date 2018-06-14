@@ -1,7 +1,6 @@
 package info.civa86.authservice.controllers;
 
 import java.security.Principal;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,7 +30,6 @@ public class UserController {
     private CustomUserDetailsService userService;
     @Autowired
     private RoleService roleService;
-    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @GetMapping(value = "/user")
     public CustomUserDetails getUser(Principal principal) {
@@ -48,14 +45,15 @@ public class UserController {
 
         Users newUser = new Users();
         Set<Role> roles = new HashSet<Role>();
-
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Role role = roleService.findRoleById(1);
+
         if (role != null) {
             roles.add(role);
         }
 
         newUser.setEmail(user.getEmail());
-        newUser.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
         newUser.setActive(1);
@@ -64,13 +62,5 @@ public class UserController {
         this.userService.saveUser(newUser);
 
         return newUser;
-    }
-
-    @GetMapping(value = "/crypt")
-    public HashMap<String, String> cryptString(@RequestParam(value = "string", required = true) String str) {
-        HashMap<String, String> result = new HashMap<String, String>();
-        result.put("decoded", str);
-        result.put("encoded", this.passwordEncoder.encode(str));
-        return result;
     }
 }

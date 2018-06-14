@@ -28,33 +28,6 @@ GET /actuator/health
 curl http://localhost:9000/actuator/health
 ```
 
-## Encode String
-
-Api to encode a string with BCrypt algorithm.
-
-**Authorization**
-
-None
-
-**Request**
-
-GET /crypt?string=EXAMPLE_STRING
-
-**Response**
-
-```json
-{
-    "decoded": "EXAMPLE_STRING",
-    "encoded": "$2a$10$8.WexK.3rPN0tI.CqbQUae1tAMzYbQoAKjn9JSLzoM5gB7QwGcp6m"
-}
-```
-
-**Example CURL**
-
-```bash
-curl http://localhost:9000/crypt?string=EXAMPLE_STRING
-```
-
 ## Register User
 
 Api to register a new user

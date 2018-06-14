@@ -1,0 +1,20 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: auth-service
+  datasource:
+    url: jdbc:mysql://localhost:13306/auth_service?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  flyway:
+    locations: classpath:/db/migration/schema,classpath:/db/migration/data
+jpa:
+  hibernate:
+    show-sql: true
+    ddl-auto: validate
+    naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    dialect: org.hibernate.dialect.MySQL5Dialect

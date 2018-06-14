@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: edge-service
+
+zuul:
+  routes:
+    # Authentication
+    uaa:
+      path: /uaa/**
+      sensitive-headers: true
+      serviceId: auth-service
+    # Microservices
+    uuid:
+      path: /uuid/**
+      serviceId: uuid-service

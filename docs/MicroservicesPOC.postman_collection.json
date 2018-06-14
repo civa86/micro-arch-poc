@@ -1,0 +1,356 @@
+{
+	"info": {
+		"name": "MicroservicesPOC",
+		"_postman_id": "7ca0e977-5d95-8d74-d720-6a03cf8c47c1",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AuthService",
+			"description": "",
+			"item": [
+				{
+					"name": "Service Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:9000/actuator/health",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"actuator",
+								"health"
+							]
+						},
+						"description": "check the service status"
+					},
+					"response": []
+				},
+				{
+					"name": "Encode String",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:9000/crypt?string=test",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"crypt"
+							],
+							"query": [
+								{
+									"key": "string",
+									"value": "test",
+									"equals": true
+								}
+							]
+						},
+						"description": "encode a string with BCrypt algorithm."
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"dario@gmail.com\",\n\t\"password\": \"P@55w0rd!\",\n\t\"firstName\": \"Dario\",\n\t\"lastName\": \"Civallero\"\n}"
+						},
+						"url": {
+							"raw": "localhost:9000/user",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"user"
+							]
+						},
+						"description": "register a new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtain Access Token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "clientSecret",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "clientId",
+									"type": "string"
+								},
+								{
+									"key": "saveHelperData",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "showPassword",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "user@test.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9000/oauth/token",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"oauth",
+								"token"
+							]
+						},
+						"description": "obtain the access token (login)"
+					},
+					"response": []
+				},
+				{
+					"name": "User Profile Data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer c8e89054-b881-45fa-b7ac-c3c44331244e"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "localhost:9000/user",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"user"
+							]
+						},
+						"description": "get logged user profile data"
+					},
+					"response": []
+				},
+				{
+					"name": "Check Access Token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "clientSecret",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "clientId",
+									"type": "string"
+								},
+								{
+									"key": "saveHelperData",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "showPassword",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:9000/oauth/check_token?token=c8e89054-b881-45fa-b7ac-c3c44331244e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"oauth",
+								"check_token"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "c8e89054-b881-45fa-b7ac-c3c44331244e",
+									"equals": true
+								}
+							]
+						},
+						"description": "check access token validity"
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "clientSecret",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "clientId",
+									"type": "string"
+								},
+								{
+									"key": "saveHelperData",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "showPassword",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "refresh_token",
+									"value": "63968e36-0d95-41b9-ba4a-9a2fbaba4e7e",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:9000/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"oauth",
+								"token"
+							]
+						},
+						"description": "regenerate both access and refresh token"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UUIDService",
+			"description": "",
+			"item": [
+				{
+					"name": "Service Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8081/actuator/health",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"actuator",
+								"health"
+							]
+						},
+						"description": "check the service status"
+					},
+					"response": []
+				},
+				{
+					"name": "Generate UUID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8081",
+							"host": [
+								"localhost"
+							],
+							"port": "8081"
+						},
+						"description": "generate a UUID"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

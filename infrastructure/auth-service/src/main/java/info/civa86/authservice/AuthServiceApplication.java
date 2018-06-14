@@ -1,13 +1,14 @@
-package info.civa86.uuidservice;
+package info.civa86.authservice;
 
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-public class UuidServiceApplication {
+public class AuthServiceApplication {
+
 	public static void main(String[] args) {
-		SpringApplication.run(UuidServiceApplication.class, args);
+		SpringApplication.run(AuthServiceApplication.class, args);
 	}
 }

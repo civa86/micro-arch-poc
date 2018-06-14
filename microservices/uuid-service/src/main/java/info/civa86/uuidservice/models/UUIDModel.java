@@ -2,14 +2,14 @@ package info.civa86.uuidservice.models;
 
 public class UUIDModel {
 
-    private final String result;
+    private final String uuid;
 
     public UUIDModel(String uuid) {
-        this.result = uuid;
+        this.uuid = uuid;
     }
 
-    public String getResult() {
-        return this.result;
+    public String getUuid() {
+        return this.uuid;
     }
 
 }

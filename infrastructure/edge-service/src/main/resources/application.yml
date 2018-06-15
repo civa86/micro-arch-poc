@@ -22,6 +22,6 @@ zuul:
       sensitive-headers: true
       serviceId: auth-service
     # Microservices
-    uuid:
+    hash:
       path: /hash/**
       serviceId: hash-service

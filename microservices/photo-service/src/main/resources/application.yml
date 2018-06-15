@@ -1,21 +1,15 @@
 server:
-  port: 9000
+  port: 8082
 
 spring:
   application:
-    name: auth-service
-  oauth:
-    client:
-      id: clientId
-      secret: clientSecret
+    name: photo-service
   datasource:
-    url: jdbc:mysql://localhost:13306/auth_service?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:13306/photo_service?createDatabaseIfNotExist=true
     username: root
     password: root
     testWhileIdle: true
     validationQuery: SELECT 1
-  flyway:
-    locations: classpath:/db/migration/schema,classpath:/db/migration/data
 
 jpa:
   hibernate:

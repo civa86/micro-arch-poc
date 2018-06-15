@@ -15,7 +15,7 @@ public class UUIDController {
     private static final Logger LOGGER = LoggerFactory.getLogger(UUIDController.class);
 
     @GetMapping(path = "/uuid")
-    public HashMap getUUID() {
+    public HashMap<String, String> getUUID() {
         HashMap<String, String> result = new HashMap<String, String>();
         String generatedUUID = UUID.randomUUID().toString();
 

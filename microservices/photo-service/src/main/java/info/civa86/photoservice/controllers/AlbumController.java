@@ -68,11 +68,11 @@ public class AlbumController {
     }
 
     @DeleteMapping(value = "/album/{id}")
-    public Integer deleteAlbum(@PathVariable(value = "id") Integer id) throws ItemNotFoundException {
-        findAlbumById(id);
+    public Album deleteAlbum(@PathVariable(value = "id") Integer id) throws ItemNotFoundException {
+        Album deleteAlbum = findAlbumById(id);
 
         this.albumService.deleteAlbum(id);
 
-        return id;
+        return deleteAlbum;
     }
 }

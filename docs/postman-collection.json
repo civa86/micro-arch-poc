@@ -461,6 +461,30 @@
 					"response": []
 				},
 				{
+					"name": "Album Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8082/album/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"album",
+								"1"
+							]
+						},
+						"description": "get album detail"
+					},
+					"response": []
+				},
+				{
 					"name": "Create Album",
 					"request": {
 						"method": "POST",

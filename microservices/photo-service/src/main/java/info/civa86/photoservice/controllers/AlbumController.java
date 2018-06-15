@@ -30,6 +30,19 @@ public class AlbumController {
         return albumService.findAll();
     }
 
+    private Album findAlbumById(Integer id) throws ItemNotFoundException {
+        Album album = this.albumService.getAlbumById(id);
+        if (album == null) {
+            throw new ItemNotFoundException();
+        }
+        return album;
+    }
+
+    @GetMapping(value = "/album/{id}")
+    public Album getAlbum(@PathVariable(value = "id") Integer id) throws ItemNotFoundException {
+        return findAlbumById(id);
+    }
+
     @PostMapping(value = "/album")
     @ResponseStatus(HttpStatus.CREATED)
     public Album createAlbum(@RequestBody @Valid Album album) {
@@ -44,11 +57,8 @@ public class AlbumController {
     }
 
     @PutMapping(value = "/album/{id}")
-    public Album updateAlbum(@PathVariable(value = "id") Integer id, @RequestBody @Valid Album album) throws ItemNotFoundException{
-        Album editAlbum = this.albumService.getAlbumById(id);
-        if (editAlbum == null) {
-            throw new ItemNotFoundException();
-        }
+    public Album updateAlbum(@PathVariable(value = "id") Integer id, @RequestBody @Valid Album album) throws ItemNotFoundException {
+        Album editAlbum = findAlbumById(id);
 
         editAlbum.setName(album.getName());
 
@@ -58,11 +68,8 @@ public class AlbumController {
     }
 
     @DeleteMapping(value = "/album/{id}")
-    public Integer deleteAlbum(@PathVariable(value = "id") Integer id) throws ItemNotFoundException{
-        Album deleteAlbum = this.albumService.getAlbumById(id);
-        if (deleteAlbum == null) {
-            throw new ItemNotFoundException();
-        }
+    public Integer deleteAlbum(@PathVariable(value = "id") Integer id) throws ItemNotFoundException {
+        findAlbumById(id);
 
         this.albumService.deleteAlbum(id);
 

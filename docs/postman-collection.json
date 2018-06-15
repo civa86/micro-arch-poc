@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b26f15ac-9f8f-4b62-b82e-6b708a9c87e7",
+		"_postman_id": "43a6eba6-44a9-4f0b-9d88-02f02951c850",
 		"name": "micro-arch-poc",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -382,6 +382,162 @@
 							]
 						},
 						"description": "encode a string with BCrypt algorithm."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ce3dd474-555d-4552-9005-e9fce32c3ac4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9d8716ab-ab6c-46ff-abe7-535a8083315e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "PhotoService",
+			"description": "Service to manage photos and albums",
+			"item": [
+				{
+					"name": "Service Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8082/actuator/health",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"actuator",
+								"health"
+							]
+						},
+						"description": "check the service status"
+					},
+					"response": []
+				},
+				{
+					"name": "Album List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8082/albums",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"albums"
+							]
+						},
+						"description": "get the albums list"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Album",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"test album\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8082/album",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"album"
+							]
+						},
+						"description": "create a new album"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Album",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"test album 2\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8082/album/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"album",
+								"1"
+							]
+						},
+						"description": "edit an existing album"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Album",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8082/album/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"album",
+								"1"
+							]
+						},
+						"description": "delete an existing album"
 					},
 					"response": []
 				}

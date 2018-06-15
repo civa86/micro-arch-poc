@@ -25,3 +25,6 @@ zuul:
     hash:
       path: /hash/**
       serviceId: hash-service
+    photo:
+      path: /photo/**
+      serviceId: photo-service

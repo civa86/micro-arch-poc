@@ -22,7 +22,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         //@formatter:off
 		http
 			.authorizeRequests()
-			.antMatchers("/uuid/**").hasRole("ADMIN")
+			.antMatchers("/photo/**").hasRole("USER")
 			.anyRequest().permitAll()
 			.and()
 			.csrf().disable();

@@ -912,7 +912,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "localhost:8080/hash/actuator/health",
+									"raw": "localhost:8080/actuator/health",
 									"host": [
 										"localhost"
 									],
@@ -937,7 +937,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "localhost:8080/hash/uuid",
+									"raw": "localhost:8080/hash-service/uuid",
 									"host": [
 										"localhost"
 									],
@@ -961,7 +961,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "localhost:8080/hash/bcrypt?string=test",
+									"raw": "localhost:8080/hash-service/bcrypt?string=test",
 									"host": [
 										"localhost"
 									],

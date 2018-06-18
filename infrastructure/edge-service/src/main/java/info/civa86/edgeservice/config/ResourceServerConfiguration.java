@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
@@ -22,19 +23,21 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         //@formatter:off
 		http
 			.authorizeRequests()
-			.antMatchers("/photo/**").hasRole("USER")
+			.antMatchers("/photo-service/**").hasRole("USER")
 			.anyRequest().permitAll()
 			.and()
-			.csrf().disable();
+            .csrf().disable();
+
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		//@formatter:on
     }
 
     @Primary
     @Bean
     public RemoteTokenServices tokenServices() {
-        String remoteTokenUrl = env.getProperty("spring.oauth.checkTokenUrl");
-        String clientId = env.getProperty("spring.oauth.client.id");
-        String clientSecret = env.getProperty("spring.oauth.client.secret");
+        String remoteTokenUrl = env.getProperty("spring.oauthToken.checkUrl");
+        String clientId = env.getProperty("spring.oauthToken.client.id");
+        String clientSecret = env.getProperty("spring.oauthToken.client.secret");
         final RemoteTokenServices tokenService = new RemoteTokenServices();
 
         tokenService.setCheckTokenEndpointUrl(remoteTokenUrl);

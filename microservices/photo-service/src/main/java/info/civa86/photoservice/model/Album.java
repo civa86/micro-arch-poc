@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
@@ -24,6 +26,10 @@ public class Album {
     @Column(name = "name")
     @NotNull
     private String name;
+
+    @Column(name = "user")
+    @JsonIgnore
+    private String user;
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -51,6 +57,16 @@ public class Album {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @JsonIgnore
+    public String getUser() {
+        return user;
+    }
+
+    @JsonIgnore
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public Date getCeatedAt() {

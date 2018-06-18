@@ -8,11 +8,23 @@ management:
 spring:
   application:
     name: edge-service
-  oauth:
-    checkTokenUrl: http://localhost:8080/uaa/oauth/check_token
+  oauthToken:
+    checkUrl: http://localhost:8080/uaa/oauth/check_token
     client:
       id: clientId
       secret: clientSecret
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 126000
+
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
 
 zuul:
   routes:
@@ -23,8 +35,8 @@ zuul:
       serviceId: auth-service
     # Microservices
     hash:
-      path: /hash/**
+      path: /hash-service/**
       serviceId: hash-service
     photo:
-      path: /photo/**
+      path: /photo-service/**
       serviceId: photo-service

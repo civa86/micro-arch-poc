@@ -27,9 +27,8 @@ public class AlbumController {
     private AlbumService albumService;
 
     @GetMapping(value = "/albums")
-    public List<Album> getAlbumList(@RequestHeader(value="auth-principal", defaultValue="anonymousUser") String auth) {
-        System.out.println(auth);
-        return albumService.findAll();
+    public List<Album> getAlbumList(@RequestHeader(value="auth-principal", defaultValue="anonymousUser") String user) {
+        return albumService.findAll(user);
     }
 
     private Album findAlbumById(Integer id) throws ItemNotFoundException {
@@ -47,10 +46,11 @@ public class AlbumController {
 
     @PostMapping(value = "/album")
     @ResponseStatus(HttpStatus.CREATED)
-    public Album createAlbum(@RequestBody @Valid Album album) {
+    public Album createAlbum(@RequestBody @Valid Album album, @RequestHeader(value="auth-principal", defaultValue="anonymousUser") String user) {
         Album newAlbum = new Album();
 
         newAlbum.setName(album.getName());
+        newAlbum.setUser(user);
 
         this.albumService.saveAlbum(newAlbum);
 

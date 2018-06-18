@@ -29,7 +29,6 @@ import org.springframework.stereotype.Component;
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(auth.getPrincipal().toString());
         ctx.addZuulRequestHeader("auth-principal", auth.getPrincipal().toString());
         return ctx;
     }

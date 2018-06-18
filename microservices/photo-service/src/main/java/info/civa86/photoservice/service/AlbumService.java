@@ -15,8 +15,8 @@ public class AlbumService {
     @Autowired
     private AlbumRepository albumRepository;
 
-    public List<Album> findAll() {
-        List<Album> albums = albumRepository.findAll();
+    public List<Album> findAll(String user) {
+        List<Album> albums = albumRepository.findAll(user);
         return albums;
     }
 

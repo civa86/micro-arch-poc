@@ -25,7 +25,7 @@ public class BCryptController {
         result.put("decoded", str);
         result.put("encoded", encodedStr);
 
-        LOGGER.info("BCrypt - from {} to {}", str, encodedStr);
+        LOGGER.info("BCrypt - original: {}, encoded: {}", str, encodedStr);
 
         return result;
     }

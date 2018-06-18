@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,8 @@ public class AlbumController {
     private AlbumService albumService;
 
     @GetMapping(value = "/albums")
-    public List<Album> getAlbumList() {
+    public List<Album> getAlbumList(@RequestHeader(value="auth-principal", defaultValue="anonymousUser") String auth) {
+        System.out.println(auth);
         return albumService.findAll();
     }
 

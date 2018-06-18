@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b737e38c-1962-4d40-a658-09010159cc6d",
+		"_postman_id": "5abf71ae-158c-4563-9cc0-2e6e736e63a5",
 		"name": "micro-arch-poc",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -912,13 +912,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "localhost:8080/actuator/health",
+									"raw": "localhost:8080/hash-service/actuator/health",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"hash",
+										"hash-service",
 										"actuator",
 										"health"
 									]
@@ -943,7 +943,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"hash",
+										"hash-service",
 										"uuid"
 									]
 								},
@@ -967,7 +967,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"hash",
+										"hash-service",
 										"bcrypt"
 									],
 									"query": [
@@ -1020,13 +1020,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "localhost:8080/photo/actuator/health",
+									"raw": "localhost:8080/photo-service/actuator/health",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"photo",
+										"photo-service",
 										"actuator",
 										"health"
 									]
@@ -1045,13 +1045,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "localhost:8080/photo/albums",
+									"raw": "localhost:8080/photo-service/albums",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"photo",
+										"photo-service",
 										"albums"
 									]
 								},
@@ -1069,13 +1069,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "localhost:8080/photo/album/1",
+									"raw": "localhost:8080/photo-service/album/1",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"photo",
+										"photo-service",
 										"album",
 										"1"
 									]
@@ -1099,13 +1099,13 @@
 									"raw": "{\n\t\"name\": \"test album\"\n}"
 								},
 								"url": {
-									"raw": "localhost:8080/photo/album",
+									"raw": "localhost:8080/photo-service/album",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"photo",
+										"photo-service",
 										"album"
 									]
 								},
@@ -1128,13 +1128,13 @@
 									"raw": "{\n\t\"name\": \"test album 2\"\n}"
 								},
 								"url": {
-									"raw": "localhost:8080/photo/album/1",
+									"raw": "localhost:8080/photo-service/album/1",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"photo",
+										"photo-service",
 										"album",
 										"1"
 									]
@@ -1153,13 +1153,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "localhost:8080/photo/album/1",
+									"raw": "localhost:8080/photo-service/album/1",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"photo",
+										"photo-service",
 										"album",
 										"1"
 									]

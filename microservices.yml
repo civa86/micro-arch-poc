@@ -14,8 +14,7 @@ services:
         condition: service_healthy
     volumes:
       - ./config/hash.props.yml:/service/application.yml:ro
-    ports:
-      - "8081:8081"
+
   photo:
     build:
       context: microservices/photo-service/
@@ -29,6 +28,3 @@ services:
         condition: service_healthy
     volumes:
       - ./config/photo.props.yml:/service/application.yml:ro
-    ports:
-      - "8082:8082"
-

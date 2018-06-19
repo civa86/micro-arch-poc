@@ -485,6 +485,31 @@
 					"response": []
 				},
 				{
+					"name": "Album Pictures",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8082/album/1/pictures",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"album",
+								"1",
+								"pictures"
+							]
+						},
+						"description": "get all pictures of the album"
+					},
+					"response": []
+				},
+				{
 					"name": "Create Album",
 					"request": {
 						"method": "POST",
@@ -562,6 +587,53 @@
 							]
 						},
 						"description": "delete an existing album"
+					},
+					"response": []
+				},
+				{
+					"name": "Picture List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8082/albums",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"albums"
+							]
+						},
+						"description": "get the pictures list"
+					},
+					"response": []
+				},
+				{
+					"name": "Picture Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8082/picture/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"picture",
+								"1"
+							]
+						},
+						"description": "get picture detail"
 					},
 					"response": []
 				}

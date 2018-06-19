@@ -20,6 +20,11 @@ public class PictureService {
         return pictures;
     }
 
+    public List<Picture> findPicturesByAlbumId(int albumId, String user) {
+        List<Picture> pictures = pictureRepository.findByAlbumId(albumId, user);
+        return pictures;
+    }
+
     // public void saveAlbum(Album album) {
     // albumRepository.save(album);
     // }

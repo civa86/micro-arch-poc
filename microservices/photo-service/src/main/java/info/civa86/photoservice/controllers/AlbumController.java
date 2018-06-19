@@ -19,13 +19,18 @@ import org.springframework.web.bind.annotation.RestController;
 import info.civa86.photoservice.exceptions.ItemForbiddenException;
 import info.civa86.photoservice.exceptions.ItemNotFoundException;
 import info.civa86.photoservice.model.Album;
+import info.civa86.photoservice.model.Picture;
 import info.civa86.photoservice.service.AlbumService;
+import info.civa86.photoservice.service.PictureService;
 
 @RestController
 public class AlbumController {
 
     @Autowired
     private AlbumService albumService;
+
+    @Autowired
+    private PictureService pictureService;
 
     @GetMapping(value = "/albums")
     public List<Album> getAlbumList(
@@ -51,6 +56,14 @@ public class AlbumController {
             @RequestHeader(value = "auth-principal", defaultValue = "anonymousUser") String user)
             throws ItemNotFoundException, ItemForbiddenException {
         return findAlbumById(id, user);
+    }
+
+    @GetMapping(value = "/album/{id}/pictures")
+    public List<Picture> getAlbumPictures(@PathVariable(value = "id") Integer id,
+            @RequestHeader(value = "auth-principal", defaultValue = "anonymousUser") String user)
+            throws ItemNotFoundException, ItemForbiddenException {
+        Album album = this.getAlbum(id, user);
+        return pictureService.findPicturesByAlbumId(album.getId(), user);
     }
 
     @PostMapping(value = "/album")

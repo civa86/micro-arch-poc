@@ -12,6 +12,10 @@ services:
       interval: 10s
       timeout: 60s
       retries: 5
+    volumes:
+      - persistent-data:/var/lib/mysql
+    ports:
+      - "13306:3306"
 
   # Eurea discovery service
   eureka:
@@ -22,6 +26,8 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
+    ports:
+      - "8761:8761"
 
   # Edge gateway service
   edge:
@@ -37,6 +43,8 @@ services:
         condition: service_healthy
     volumes:
       - ./config/edge.props.yml:/service/application.yml:ro
+    ports:
+      - "8080:8080"
 
   # Auth service
   auth:
@@ -54,3 +62,42 @@ services:
         condition: service_healthy
     volumes:
       - ./config/auth.props.yml:/service/application.yml:ro
+    expose:
+      - "9000"
+
+  # Hash String service
+  hash:
+    build:
+      context: microservices/hash-service/
+    healthcheck:
+      test: "wget -q -T 1 -s http://localhost:8081/actuator/health"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      eureka:
+        condition: service_healthy
+    volumes:
+      - ./config/hash.props.yml:/service/application.yml:ro
+    expose:
+      - "8081"
+
+  # Photo service
+  photo:
+    build:
+      context: microservices/photo-service/
+    healthcheck:
+      test: "wget -q -T 1 -s http://localhost:8082/actuator/health"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      eureka:
+        condition: service_healthy
+    volumes:
+      - ./config/photo.props.yml:/service/application.yml:ro
+    expose:
+      - "8082"
+
+volumes:
+  persistent-data:

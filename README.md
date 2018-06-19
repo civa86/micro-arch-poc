@@ -48,20 +48,17 @@ Run inside docker with compose.
 
 For compose commands refer to the [official documentation](https://docs.docker.com/compose/)
 
-Example architectures:
+Examples:
 
 ```bash
-# Run command: infrastructure only
-docker-compose $COMPOSE_COMMAND
+# Run database only
+docker-compose up -d mysql
 
-# Run command: infrastructure + microservices
-docker-compose -f docker-compose.yml -f microservices.yml $COMPOSE_COMMAND
+# Run full architecture
+docker-compose up -d
 
-# Run command: infrastructure + microservices + elastic search
-docker-compose -f docker-compose.yml -f microservices.yml -f elk.yml $COMPOSE_COMMAND
-
-# Run command: architecture in production mode (private network and persistence)
-docker-compose -f docker-compose.yml -f microservices.yml -f elk.yml -f prod.yml $COMPOSE_COMMAND
+# Shutdown and destroy storages
+docker-compose down -v
 ```
 
 ## References

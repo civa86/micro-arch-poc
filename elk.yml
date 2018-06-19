@@ -4,17 +4,19 @@ services:
   elasticsearch:
     build:
       context: elk/elasticsearch/
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
     volumes:
       - ./config/elk/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
     ports:
       - "9200:9200"
       - "9300:9300"
-    environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
 
   logstash:
     build:
       context: elk/logstash/
+    depends_on:
+      - elasticsearch
     volumes:
       - ./config/elk/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ./config/elk/pipeline:/usr/share/logstash/pipeline:ro
@@ -22,16 +24,16 @@ services:
       - "5000:5000"
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-    depends_on:
-      - elasticsearch
+
 
   kibana:
     build:
       context: elk/kibana/
+    depends_on:
+      - elasticsearch
     volumes:
       - ./config/elk/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
     ports:
       - "5601:5601"
-    depends_on:
-      - elasticsearch
+
 

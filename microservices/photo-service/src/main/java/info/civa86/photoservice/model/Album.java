@@ -35,11 +35,13 @@ public class Album {
     @Column(name = "created_at")
     private Date createdAt;
 
-    public Album() {}
+    public Album() {
+    }
 
     public Album(Album album) {
         this.id = album.id;
         this.name = album.name;
+        this.user = album.user;
         this.createdAt = album.createdAt;
     }
 

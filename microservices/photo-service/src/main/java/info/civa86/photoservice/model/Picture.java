@@ -11,6 +11,8 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
@@ -27,19 +29,24 @@ public class Picture {
     private String title;
 
     @Lob
-    @Column(name="image")
+    @Column(name = "image")
     @NotNull
     private byte[] image;
 
-    @Column(name="album_id")
+    @Column(name = "album_id")
     @NotNull
     private Integer albumId;
+
+    @Column(name = "user")
+    @JsonIgnore
+    private String user;
 
     @CreationTimestamp
     @Column(name = "created_at")
     private Date createdAt;
 
-    public Picture() {}
+    public Picture() {
+    }
 
     public Picture(Picture pic) {
         this.id = pic.id;
@@ -70,6 +77,14 @@ public class Picture {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public Date getCeatedAt() {

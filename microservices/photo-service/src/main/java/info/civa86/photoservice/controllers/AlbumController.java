@@ -70,9 +70,8 @@ public class AlbumController {
     @ResponseStatus(HttpStatus.CREATED)
     public Album createAlbum(@RequestBody @Valid Album album,
             @RequestHeader(value = "auth-principal", defaultValue = "anonymousUser") String user) {
-        Album newAlbum = new Album();
+        Album newAlbum = new Album(album);
 
-        newAlbum.setName(album.getName());
         newAlbum.setUser(user);
 
         this.albumService.saveAlbum(newAlbum);

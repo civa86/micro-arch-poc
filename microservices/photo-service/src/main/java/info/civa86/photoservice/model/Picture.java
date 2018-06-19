@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,11 +28,13 @@ public class Picture {
 
     @Column(name = "title")
     @NotNull
+    @NotBlank
     private String title;
 
     @Lob
     @Column(name = "image")
     @NotNull
+    @NotEmpty
     private byte[] image;
 
     @Column(name = "album_id")
@@ -52,6 +56,7 @@ public class Picture {
         this.id = pic.id;
         this.title = pic.title;
         this.image = pic.image;
+        this.albumId = pic.albumId;
         this.createdAt = pic.createdAt;
     }
 
@@ -77,6 +82,14 @@ public class Picture {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public int getAlbumId() {
+        return albumId;
+    }
+
+    public void setAlbumId(int albumId) {
+        this.albumId = albumId;
     }
 
     public String getUser() {

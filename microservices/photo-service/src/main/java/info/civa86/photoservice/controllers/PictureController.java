@@ -1,12 +1,21 @@
 package info.civa86.photoservice.controllers;
 
 import java.util.List;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import info.civa86.photoservice.exceptions.ItemForbiddenException;
 import info.civa86.photoservice.exceptions.ItemNotFoundException;
@@ -18,6 +27,9 @@ public class PictureController {
 
     @Autowired
     private PictureService pictureService;
+
+    @Autowired
+    private Validator validator;
 
     @GetMapping(value = "/pictures")
     public List<Picture> getPictureList(
@@ -45,21 +57,26 @@ public class PictureController {
         return findPictureById(id, user);
     }
 
-    // @PostMapping(value = "/album")
-    // @ResponseStatus(HttpStatus.CREATED)
-    // public Album createAlbum(@RequestBody @Valid Album album,
-    // @RequestHeader(value = "auth-principal", defaultValue = "anonymousUser")
-    // String user) {
-    // Album newAlbum = new Album();
+    @PostMapping(value = "/picture")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Picture createPicture(@RequestParam("title") String title, @RequestParam("albumId") int albumId,
+            @RequestParam("image") MultipartFile file,
+            @RequestHeader(value = "auth-principal", defaultValue = "anonymousUser") String user) {
+        Picture newPicture = new Picture();
+        Set<ConstraintViolation<Picture>> violations;
 
-    // newAlbum.setName(album.getName());
-    // newAlbum.setUser(user);
+        newPicture.setTitle(title);
+        newPicture.setAlbumId(albumId);
+        newPicture.setUser(user);
+        violations = validator.validate(newPicture);
 
-    // this.albumService.saveAlbum(newAlbum);
+        System.out.println(file.getOriginalFilename());
 
-    // return newAlbum;
+        // this.albumService.saveAlbum(newAlbum);
 
-    // }
+        return newPicture;
+
+    }
 
     // @PutMapping(value = "/album/{id}")
     // public Album updateAlbum(@PathVariable(value = "id") Integer id, @RequestBody

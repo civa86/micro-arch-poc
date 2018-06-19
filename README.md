@@ -51,8 +51,8 @@ For compose commands refer to the [official documentation](https://docs.docker.c
 Examples:
 
 ```bash
-# Run database only
-docker-compose up -d mysql
+# Run database and eureka (dev mode)
+docker-compose up -d mysql eureka
 
 # Run full architecture
 docker-compose up -d

@@ -12,8 +12,6 @@ services:
       interval: 10s
       timeout: 60s
       retries: 5
-    volumes:
-      - persistent-data:/var/lib/mysql
     ports:
       - "13306:3306"
 
@@ -98,6 +96,3 @@ services:
       - ./config/photo.props.yml:/service/application.yml:ro
     expose:
       - "8082"
-
-volumes:
-  persistent-data:

@@ -8,11 +8,14 @@ management:
 spring:
   application:
     name: edge-service
-  oauthToken:
-    checkUrl: http://localhost:8080/uaa/oauth/check_token
-    client:
-      id: clientId
-      secret: clientSecret
+
+authorizationServer:
+    userInfoUrl: http://localhost:9000/user
+    oauthToken:
+      checkUrl: http://localhost:9000/oauth/check_token
+      client:
+        id: clientId
+        secret: clientSecret
 
 hystrix:
   command:

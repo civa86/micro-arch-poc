@@ -71,6 +71,7 @@ public class PictureController {
         violations = validator.validate(newPicture);
 
         System.out.println(file.getOriginalFilename());
+        System.out.println(violations);
 
         // this.albumService.saveAlbum(newAlbum);
 

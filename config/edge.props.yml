@@ -1,3 +1,11 @@
+authorizationServer:
+    userInfoUrl: http://auth:9000/user
+    oauthToken:
+      checkUrl: http://auth:9000/oauth/check_token
+      client:
+        id: clientId
+        secret: clientSecret
+
 eureka:
   client:
     serviceUrl:

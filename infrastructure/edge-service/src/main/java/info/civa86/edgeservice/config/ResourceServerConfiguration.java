@@ -35,9 +35,9 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Primary
     @Bean
     public RemoteTokenServices tokenServices() {
-        String remoteTokenUrl = env.getProperty("spring.oauthToken.checkUrl");
-        String clientId = env.getProperty("spring.oauthToken.client.id");
-        String clientSecret = env.getProperty("spring.oauthToken.client.secret");
+        String remoteTokenUrl = env.getProperty("authorizationServer.oauthToken.checkUrl");
+        String clientId = env.getProperty("authorizationServer.oauthToken.client.id");
+        String clientSecret = env.getProperty("authorizationServer.oauthToken.client.secret");
         final RemoteTokenServices tokenService = new RemoteTokenServices();
 
         tokenService.setCheckTokenEndpointUrl(remoteTokenUrl);

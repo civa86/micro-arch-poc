@@ -29,9 +29,9 @@ public class Album {
     @NotBlank
     private String name;
 
-    @Column(name = "user")
+    @Column(name = "user_id")
     @JsonIgnore
-    private String user;
+    private int userId;
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -43,7 +43,7 @@ public class Album {
     public Album(Album album) {
         this.id = album.id;
         this.name = album.name;
-        this.user = album.user;
+        this.userId = album.userId;
         this.createdAt = album.createdAt;
     }
 
@@ -64,13 +64,13 @@ public class Album {
     }
 
     @JsonIgnore
-    public String getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
     @JsonIgnore
-    public void setUser(String user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public Date getCeatedAt() {

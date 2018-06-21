@@ -51,7 +51,7 @@ public class AuthenticationFilter extends ZuulFilter {
                 try {
                     HashMap<?, ?> userInformations = userInfo.get(accessToken);
 
-                    ctx.addZuulRequestHeader("X-FORWARD-USER-ID", userInformations.get("id").toString());
+                    ctx.addZuulRequestHeader("X-FORWARDED-USER-ID", userInformations.get("id").toString());
                 } catch (MalformedURLException malformedURLException) {
                     return ctx;
                 } catch (IOException ioException) {
@@ -59,8 +59,6 @@ public class AuthenticationFilter extends ZuulFilter {
                 }
             }
         }
-
-        ctx.addZuulRequestHeader("auth-principal", auth.getPrincipal().toString());
         return ctx;
     }
 

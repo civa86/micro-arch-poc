@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import info.civa86.photoservice.exceptions.ItemForbiddenException;
+import info.civa86.photoservice.exceptions.ItemNotFoundException;
 import info.civa86.photoservice.model.Album;
 import info.civa86.photoservice.repository.AlbumRepository;
 
@@ -15,8 +17,8 @@ public class AlbumService {
     @Autowired
     private AlbumRepository albumRepository;
 
-    public List<Album> findAll(String user) {
-        List<Album> albums = albumRepository.findAll(user);
+    public List<Album> findAll(int userId) {
+        List<Album> albums = albumRepository.findAll(userId);
         return albums;
     }
 
@@ -24,9 +26,17 @@ public class AlbumService {
         albumRepository.save(album);
     }
 
-    public Album getAlbumById(Integer id) {
+    public Album getAlbumByIdAndCheckUser(int id, int userId) throws ItemNotFoundException, ItemForbiddenException{
         Optional<Album> album = albumRepository.findById(id);
-        return album.isPresent() ? album.get() : null;
+
+        if (!album.isPresent()) {
+            throw new ItemNotFoundException();
+        }
+        if (album.get().getUserId() != userId) {
+            throw new ItemForbiddenException();
+        }
+
+        return album.get();
     }
 
     public void deleteAlbum(Integer id) {

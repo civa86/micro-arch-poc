@@ -39,11 +39,11 @@ public class Picture {
 
     @Column(name = "album_id")
     @NotNull
-    private Integer albumId;
+    private int albumId;
 
-    @Column(name = "user")
+    @Column(name = "user_id")
     @JsonIgnore
-    private String user;
+    private int userId;
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -57,6 +57,7 @@ public class Picture {
         this.title = pic.title;
         this.image = pic.image;
         this.albumId = pic.albumId;
+        this.userId = pic.userId;
         this.createdAt = pic.createdAt;
     }
 
@@ -92,12 +93,12 @@ public class Picture {
         this.albumId = albumId;
     }
 
-    public String getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public Date getCeatedAt() {

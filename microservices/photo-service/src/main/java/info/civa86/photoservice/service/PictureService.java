@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import info.civa86.photoservice.exceptions.ItemForbiddenException;
+import info.civa86.photoservice.exceptions.ItemNotFoundException;
 import info.civa86.photoservice.model.Picture;
 import info.civa86.photoservice.repository.PictureRepository;
 
@@ -15,13 +17,13 @@ public class PictureService {
     @Autowired
     private PictureRepository pictureRepository;
 
-    public List<Picture> findAll(String user) {
-        List<Picture> pictures = pictureRepository.findAll(user);
+    public List<Picture> findAll(int userId) {
+        List<Picture> pictures = pictureRepository.findAll(userId);
         return pictures;
     }
 
-    public List<Picture> findPicturesByAlbumId(int albumId, String user) {
-        List<Picture> pictures = pictureRepository.findByAlbumId(albumId, user);
+    public List<Picture> findPicturesByAlbumId(int albumId, int userId) {
+        List<Picture> pictures = pictureRepository.findByAlbumId(albumId, userId);
         return pictures;
     }
 
@@ -29,9 +31,17 @@ public class PictureService {
     // albumRepository.save(album);
     // }
 
-    public Picture getPictureById(Integer id) {
+    public Picture getPictureByIdAndCheckUser(int id, int userId) throws ItemNotFoundException, ItemForbiddenException {
         Optional<Picture> pic = pictureRepository.findById(id);
-        return pic.isPresent() ? pic.get() : null;
+
+        if (!pic.isPresent()) {
+            throw new ItemNotFoundException();
+        }
+        if (pic.get().getUserId() != userId) {
+            throw new ItemForbiddenException();
+        }
+
+        return pic.get();
     }
 
     // public void deleteAlbum(Integer id) {

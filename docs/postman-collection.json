@@ -609,13 +609,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "localhost:8082/albums",
+									"raw": "localhost:8082/pictures",
 									"host": [
 										"localhost"
 									],
 									"port": "8082",
 									"path": [
-										"albums"
+										"pictures"
 									]
 								},
 								"description": "get the pictures list"
@@ -643,6 +643,48 @@
 									]
 								},
 								"description": "get picture detail"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Picture",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "Test Picture",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "albumId",
+											"value": "1",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"value": "",
+											"description": "",
+											"type": "file"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8082/picture",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"picture"
+									]
+								},
+								"description": "create a new picture"
 							},
 							"response": []
 						}

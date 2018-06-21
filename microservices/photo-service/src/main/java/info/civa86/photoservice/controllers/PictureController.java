@@ -58,7 +58,7 @@ public class PictureController {
     @PostMapping(value = "/picture")
     @ResponseStatus(HttpStatus.CREATED)
     public Picture createPicture(@RequestParam("title") String title, @RequestParam("albumId") int albumId,
-            @RequestParam("image") MultipartFile file,
+            @RequestParam("image") MultipartFile image,
             @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId, HttpServletResponse response) throws ItemNotFoundException, ItemForbiddenException, MethodArgumentNotValidException, IOException{
 
         Picture newPicture;
@@ -69,7 +69,7 @@ public class PictureController {
 
         newPicture = new Picture();
         newPicture.setTitle(title);
-        newPicture.setImage(new byte[128]);
+        newPicture.setImage(image.getBytes());
         newPicture.setAlbumId(albumId);
         newPicture.setUserId(userId);
 
@@ -82,7 +82,7 @@ public class PictureController {
             throw new MethodArgumentNotValidException(null, result);
         }
 
-        // this.albumService.saveAlbum(newAlbum);
+        this.pictureService.savePicture(newPicture);
 
         return newPicture;
 

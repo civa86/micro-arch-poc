@@ -35,6 +35,7 @@ public class Picture {
     @Column(name = "image")
     @NotNull
     @NotEmpty
+    @JsonIgnore
     private byte[] image;
 
     @Column(name = "album_id")

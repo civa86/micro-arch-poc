@@ -27,9 +27,9 @@ public class PictureService {
         return pictures;
     }
 
-    // public void saveAlbum(Album album) {
-    // albumRepository.save(album);
-    // }
+    public void savePicture(Picture picture) {
+        pictureRepository.save(picture);
+    }
 
     public Picture getPictureByIdAndCheckUser(int id, int userId) throws ItemNotFoundException, ItemForbiddenException {
         Optional<Picture> pic = pictureRepository.findById(id);

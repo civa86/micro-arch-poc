@@ -1,11 +1,14 @@
 package info.civa86.photoservice.controllers;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Validator;
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BeanPropertyBindingResult;
@@ -39,8 +42,7 @@ public class PictureController {
     private Validator validator;
 
     @GetMapping(value = "/pictures")
-    public List<Picture> getPictureList(
-        @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId) {
+    public List<Picture> getPictureList(@RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId) {
         return pictureService.findAll(userId);
     }
 
@@ -50,16 +52,27 @@ public class PictureController {
 
     @GetMapping(value = "/picture/{id}")
     public Picture getPicture(@PathVariable(value = "id") Integer id,
-    @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId)
+            @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId)
             throws ItemNotFoundException, ItemForbiddenException {
         return findPictureById(id, userId);
+    }
+
+    @GetMapping(value = "/picture/{id}/render")
+    public void renderPicture(@PathVariable(value = "id") Integer id,
+            @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId, HttpServletResponse response)
+            throws ItemNotFoundException, ItemForbiddenException, IOException {
+        Picture pic = findPictureById(id, userId);
+        InputStream inputStream = new ByteArrayInputStream(pic.getImage());
+        response.setContentType(pic.getMimeType());
+        IOUtils.copy(inputStream, response.getOutputStream());
     }
 
     @PostMapping(value = "/picture")
     @ResponseStatus(HttpStatus.CREATED)
     public Picture createPicture(@RequestParam("title") String title, @RequestParam("albumId") int albumId,
             @RequestParam("image") MultipartFile image,
-            @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId, HttpServletResponse response) throws ItemNotFoundException, ItemForbiddenException, MethodArgumentNotValidException, IOException{
+            @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId, HttpServletResponse response)
+            throws ItemNotFoundException, ItemForbiddenException, MethodArgumentNotValidException, IOException {
 
         Picture newPicture;
         BeanPropertyBindingResult result;
@@ -69,6 +82,7 @@ public class PictureController {
 
         newPicture = new Picture();
         newPicture.setTitle(title);
+        newPicture.setMimeType(image.getContentType());
         newPicture.setImage(image.getBytes());
         newPicture.setAlbumId(albumId);
         newPicture.setUserId(userId);

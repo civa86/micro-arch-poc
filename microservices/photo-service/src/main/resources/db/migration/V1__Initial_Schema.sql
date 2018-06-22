@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS `album` (
 CREATE TABLE IF NOT EXISTS `picture` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
+  `mime_type` VARCHAR(255) NOT NULL,
   `image` LONGBLOB NOT NULL,
   `album_id` INT(11) NOT NULL,
   `user_id` INT(11) NOT NULL,

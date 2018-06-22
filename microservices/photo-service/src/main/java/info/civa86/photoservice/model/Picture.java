@@ -31,6 +31,11 @@ public class Picture {
     @NotBlank
     private String title;
 
+    @Column(name = "mime_type")
+    @NotNull
+    @NotBlank
+    private String mimeType;
+
     @Lob
     @Column(name = "image")
     @NotNull
@@ -56,6 +61,7 @@ public class Picture {
     public Picture(Picture pic) {
         this.id = pic.id;
         this.title = pic.title;
+        this.mimeType = pic.mimeType;
         this.image = pic.image;
         this.albumId = pic.albumId;
         this.userId = pic.userId;
@@ -76,6 +82,14 @@ public class Picture {
 
     public void setTitle(String name) {
         this.title = name;
+    }
+
+    public String getMimeType() {
+        return mimeType;
+    }
+
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
     }
 
     public byte[] getImage() {

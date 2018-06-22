@@ -1,3 +1,6 @@
+logging:
+  config: /service/logback.xml
+
 eureka:
   client:
     serviceUrl:

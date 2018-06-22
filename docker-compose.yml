@@ -12,8 +12,6 @@ services:
       interval: 10s
       timeout: 60s
       retries: 5
-    ports:
-      - "13306:3306"
 
   # Eurea discovery service
   eureka:
@@ -22,37 +20,38 @@ services:
     healthcheck:
       test: "wget -q -T 1 -s http://localhost:8761/actuator/health"
       interval: 30s
-      timeout: 5s
-      retries: 3
-    ports:
-      - "8761:8761"
+      timeout: 60s
+      retries: 10
 
   # Edge gateway service
   edge:
     build:
       context: infrastructure/edge-service/
+    environment:
+      ELK_SERVICE_NAME: EDGE
     healthcheck:
       test: "wget -q -T 1 -s http://localhost:8080/actuator/health"
       interval: 30s
-      timeout: 5s
-      retries: 3
+      timeout: 60s
+      retries: 10
     depends_on:
       eureka:
         condition: service_healthy
     volumes:
       - ./config/edge.props.yml:/service/application.yml:ro
-    ports:
-      - "8080:8080"
+      - ./config/logback.xml:/service/logback.xml:ro
 
   # Auth service
   auth:
     build:
       context: infrastructure/auth-service/
+    environment:
+      ELK_SERVICE_NAME: AUTH
     healthcheck:
       test: "wget -q -T 1 -s http://localhost:9000/actuator/health"
       interval: 30s
-      timeout: 5s
-      retries: 3
+      timeout: 60s
+      retries: 10
     depends_on:
       mysql:
         condition: service_healthy
@@ -60,39 +59,70 @@ services:
         condition: service_healthy
     volumes:
       - ./config/auth.props.yml:/service/application.yml:ro
-    expose:
-      - "9000"
+      - ./config/logback.xml:/service/logback.xml:ro
 
   # Hash String service
   hash:
     build:
       context: microservices/hash-service/
+    environment:
+      ELK_SERVICE_NAME: HASH
     healthcheck:
       test: "wget -q -T 1 -s http://localhost:8081/actuator/health"
       interval: 30s
-      timeout: 5s
-      retries: 3
+      timeout: 60s
+      retries: 10
     depends_on:
       eureka:
         condition: service_healthy
     volumes:
       - ./config/hash.props.yml:/service/application.yml:ro
-    expose:
-      - "8081"
+      - ./config/logback.xml:/service/logback.xml:ro
 
   # Photo service
   photo:
     build:
       context: microservices/photo-service/
+    environment:
+      ELK_SERVICE_NAME: PHOTO
     healthcheck:
       test: "wget -q -T 1 -s http://localhost:8082/actuator/health"
       interval: 30s
-      timeout: 5s
-      retries: 3
+      timeout: 60s
+      retries: 10
     depends_on:
       eureka:
         condition: service_healthy
     volumes:
       - ./config/photo.props.yml:/service/application.yml:ro
-    expose:
-      - "8082"
+      - ./config/logback.xml:/service/logback.xml:ro
+
+  # Elastic Search
+  elasticsearch:
+    build:
+      context: elk/elasticsearch/
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+    volumes:
+      - ./config/elk/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+
+  # Losgstash
+  logstash:
+    build:
+      context: elk/logstash/
+    depends_on:
+      - elasticsearch
+    volumes:
+      - ./config/elk/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./config/elk/pipeline:/usr/share/logstash/pipeline:ro
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+
+  # Kibana
+  kibana:
+    build:
+      context: elk/kibana/
+    depends_on:
+      - elasticsearch
+    volumes:
+      - ./config/elk/kibana.yml:/usr/share/kibana/config/kibana.yml:ro

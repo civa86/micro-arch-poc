@@ -1,3 +1,6 @@
+logging:
+  config: /service/logback.xml
+
 authorizationServer:
     userInfoUrl: http://auth:9000/user
     oauthToken:

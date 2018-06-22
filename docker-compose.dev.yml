@@ -3,10 +3,8 @@ version: '2.3'
 services:
   # Database
   mysql:
-    volumes:
-      - persistent-data:/var/lib/mysql
-    expose:
-      - "3306"
+    ports:
+      - "13306:3306"
 
   # Eurea discovery service
   eureka:
@@ -20,34 +18,31 @@ services:
 
   # Auth service
   auth:
-    expose:
-      - "9000"
+    ports:
+      - "9000:9000"
 
   # Hash String service
   hash:
-    expose:
-      - "8081"
+    ports:
+      - "8081:8081"
 
   # Photo service
   photo:
-    expose:
-      - "8082"
+    ports:
+      - "8082:8082"
 
   # Elastic Search
   elasticsearch:
-    expose:
-      - "9200"
-      - "9300"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
 
   # Losgstash
   logstash:
-    expose:
-      - "5000"
+    ports:
+      - "5000:5000"
 
   # Kibana
   kibana:
     ports:
       - "5601:5601"
-
-volumes:
-  persistent-data:

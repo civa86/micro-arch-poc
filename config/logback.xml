@@ -4,7 +4,7 @@
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <destination>logstash:5000</destination>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-            <customFields>{"application": "${ELK_POC_APP_NAME}"}</customFields>
+            <customFields>{"application": "${ELK_SERVICE_NAME}"}</customFields>
         </encoder>
     </appender>
     <logger name="org.apache.http" level="warn" />

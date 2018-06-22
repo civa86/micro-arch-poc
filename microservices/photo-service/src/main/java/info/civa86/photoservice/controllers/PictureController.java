@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import javax.validation.Validator;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -14,9 +15,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -46,7 +50,7 @@ public class PictureController {
         return pictureService.findAll(userId);
     }
 
-    private Picture findPictureById(Integer id, int userId) throws ItemNotFoundException, ItemForbiddenException {
+    private Picture checkPicture(Integer id, int userId) throws ItemNotFoundException, ItemForbiddenException {
         return this.pictureService.getPictureByIdAndCheckUser(id, userId);
     }
 
@@ -54,14 +58,14 @@ public class PictureController {
     public Picture getPicture(@PathVariable(value = "id") Integer id,
             @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId)
             throws ItemNotFoundException, ItemForbiddenException {
-        return findPictureById(id, userId);
+        return checkPicture(id, userId);
     }
 
     @GetMapping(value = "/picture/{id}/render")
     public void renderPicture(@PathVariable(value = "id") Integer id,
             @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId, HttpServletResponse response)
             throws ItemNotFoundException, ItemForbiddenException, IOException {
-        Picture pic = findPictureById(id, userId);
+        Picture pic = checkPicture(id, userId);
         InputStream inputStream = new ByteArrayInputStream(pic.getImage());
         response.setContentType(pic.getMimeType());
         IOUtils.copy(inputStream, response.getOutputStream());
@@ -102,30 +106,27 @@ public class PictureController {
 
     }
 
-    // @PutMapping(value = "/album/{id}")
-    // public Album updateAlbum(@PathVariable(value = "id") Integer id, @RequestBody
-    // @Valid Album album,
-    // @RequestHeader(value = "auth-principal", defaultValue = "anonymousUser")
-    // String user)
-    // throws ItemNotFoundException, ItemForbiddenException {
-    // Album editAlbum = findAlbumById(id, user);
+    @PutMapping(value = "/picture/{id}")
+    public Picture updatePicture(@PathVariable(value = "id") Integer id, @RequestBody @Valid Picture picture,
+            @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId)
+            throws ItemNotFoundException, ItemForbiddenException {
+        Picture editPicture = checkPicture(id, userId);
 
-    // editAlbum.setName(album.getName());
+        editPicture.setTitle(picture.getTitle());
 
-    // this.albumService.saveAlbum(editAlbum);
+        this.pictureService.savePicture(editPicture);
 
-    // return editAlbum;
-    // }
+        return editPicture;
+    }
 
-    // @DeleteMapping(value = "/album/{id}")
-    // public Album deleteAlbum(@PathVariable(value = "id") Integer id,
-    // @RequestHeader(value = "auth-principal", defaultValue = "anonymousUser")
-    // String user)
-    // throws ItemNotFoundException, ItemForbiddenException {
-    // Album deleteAlbum = findAlbumById(id, user);
+    @DeleteMapping(value = "/picture/{id}")
+    public Picture deletePicture(@PathVariable(value = "id") Integer id,
+            @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId)
+            throws ItemNotFoundException, ItemForbiddenException {
+        Picture deletePicture = checkPicture(id, userId);
 
-    // this.albumService.deleteAlbum(id);
+        this.pictureService.deletePicture(id);
 
-    // return deleteAlbum;
-    // }
+        return deletePicture;
+    }
 }

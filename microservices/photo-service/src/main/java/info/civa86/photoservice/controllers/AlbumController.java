@@ -33,24 +33,24 @@ public class AlbumController {
     private PictureService pictureService;
 
     @GetMapping(value = "/albums")
-    public List<Album> getAlbumList(
-            @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId) {
+    public List<Album> getAlbumList(@RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId) {
         return albumService.findAll(userId);
     }
 
-    private Album findAlbumById(int id, int userId) throws ItemNotFoundException, ItemForbiddenException {
+    private Album checkAlbum(int id, int userId) throws ItemNotFoundException, ItemForbiddenException {
         return this.albumService.getAlbumByIdAndCheckUser(id, userId);
     }
 
     @GetMapping(value = "/album/{id}")
     public Album getAlbum(@PathVariable(value = "id") Integer id,
-    @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId)
+            @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId)
             throws ItemNotFoundException, ItemForbiddenException {
-        return findAlbumById(id, userId);
+        return checkAlbum(id, userId);
     }
 
     @GetMapping(value = "/album/{id}/pictures")
-    public List<Picture> getAlbumPictures(@PathVariable(value = "id") Integer id, @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId)
+    public List<Picture> getAlbumPictures(@PathVariable(value = "id") Integer id,
+            @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId)
             throws ItemNotFoundException, ItemForbiddenException {
         Album album = this.getAlbum(id, userId);
         return pictureService.findPicturesByAlbumId(album.getId(), userId);
@@ -59,7 +59,7 @@ public class AlbumController {
     @PostMapping(value = "/album")
     @ResponseStatus(HttpStatus.CREATED)
     public Album createAlbum(@RequestBody @Valid Album album,
-    @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId) {
+            @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId) {
         Album newAlbum = new Album(album);
 
         newAlbum.setUserId(userId);
@@ -67,14 +67,13 @@ public class AlbumController {
         this.albumService.saveAlbum(newAlbum);
 
         return newAlbum;
-
     }
 
     @PutMapping(value = "/album/{id}")
     public Album updateAlbum(@PathVariable(value = "id") Integer id, @RequestBody @Valid Album album,
-    @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId)
+            @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId)
             throws ItemNotFoundException, ItemForbiddenException {
-        Album editAlbum = findAlbumById(id, userId);
+        Album editAlbum = checkAlbum(id, userId);
 
         editAlbum.setName(album.getName());
 
@@ -85,9 +84,9 @@ public class AlbumController {
 
     @DeleteMapping(value = "/album/{id}")
     public Album deleteAlbum(@PathVariable(value = "id") Integer id,
-    @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId)
+            @RequestHeader(value = "X-FORWARDED-USER-ID", defaultValue = "-1") int userId)
             throws ItemNotFoundException, ItemForbiddenException {
-        Album deleteAlbum = findAlbumById(id, userId);
+        Album deleteAlbum = checkAlbum(id, userId);
 
         this.albumService.deleteAlbum(id);
 

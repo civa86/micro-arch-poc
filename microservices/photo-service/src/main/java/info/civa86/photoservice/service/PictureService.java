@@ -44,8 +44,8 @@ public class PictureService {
         return pic.get();
     }
 
-    // public void deleteAlbum(Integer id) {
-    // albumRepository.deleteById(id);
-    // }
+    public void deletePicture(Integer id) {
+        pictureRepository.deleteById(id);
+    }
 
 }

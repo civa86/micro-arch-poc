@@ -1,10 +1,20 @@
 # [P.O.C.] Microservices Architecture
 
-This project contains a P.O.C of a microservices architecture that runs under JVM (Java, Clojure).
+Proof of Concept of a Microservices Architecture.
 
-Docker...ELK...
+* Microservices implementation with [Spring Boot](https://spring.io/projects/spring-boot) and [Netflix OSS](https://netflix.github.io/)
+* Log centralization with [ELK Stack](https://www.elastic.co/elk-stack)
+* Architecture running inside [Docker](https://www.docker.com/) with [Docker Compose](https://docs.docker.com/compose/)
 
-## Spring Boot Package Creator
+###### Architecture Scheme
+
+![architecture](docs/architecture.jpg 'Architecture Scheme')
+
+---
+
+## Spring Boot Generic Service
+
+Create a new microservice with Spring Boot
 
 ###### Website
 
@@ -14,22 +24,27 @@ Docker...ELK...
 
 [Spring Boot CLI](https://docs.spring.io/spring-boot/docs/current/reference/html/cli.html)
 
-## Service Dependencies
+#### Service Dependencies
 
-`Eureka Service`: Eureka Server
+All microservices have at least following dependencies
 
-`Edge Service`: Eureka Discovery, Feign, Zuul, Rest Repositories, Web, Hystrix, Lombok
+| Dependency       | Feature                           |
+| ---------------- | --------------------------------- |
+| Eureka Discovery | Service discovery                 |
+| Actuator         | Monitor and Manage the service    |
+| Web              | FullStack devolpment MVC          |
+| DevTools         | Development Tools with hot reload |
 
-`Generic Service`: Eureka Discovery, Actuator, Web, DevTools
-
-## Usage
+#### Service Development
 
 ```bash
 cd <microservice_folder>
 ./mvnw spring-boot:run
 ```
 
-## JVM Microservices Architecture
+---
+
+## Microservices Architecture
 
 * Infrastructure
     * [Eureka Service](infrastructure/eureka-service/README.md)
@@ -41,6 +56,8 @@ cd <microservice_folder>
 ## API Usage Examples
 
 PostMan Collection can be found [here](docs/postman-collection.json).
+
+---
 
 ## Docker Compose
 
@@ -60,6 +77,8 @@ docker-compose up -d
 # Shutdown and destroy storages
 docker-compose down -v
 ```
+
+---
 
 ## References
 

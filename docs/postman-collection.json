@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c3826478-aa67-426a-84b4-cfe75ad2d541",
+		"_postman_id": "7e6d9de7-091a-4e27-8323-e67eeabff46b",
 		"name": "micro-arch-poc",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -691,7 +691,8 @@
 										},
 										{
 											"key": "image",
-											"type": "file"
+											"type": "file",
+											"value": ""
 										}
 									]
 								},
@@ -1521,7 +1522,8 @@
 												},
 												{
 													"key": "image",
-													"type": "file"
+													"type": "file",
+													"value": ""
 												}
 											]
 										},

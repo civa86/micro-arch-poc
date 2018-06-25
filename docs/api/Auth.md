@@ -1,10 +1,12 @@
-# Auth Service
+[Home](../../README.md) | [API Usage](README.md)
+
+# Auth Service REST API
 
 MicroService to manage Authentication with OAuth2, Users and Roles.
 
 ## Get Service Status
 
-Api to discover the service status.
+API to discover the service status.
 
 **Authorization**
 
@@ -30,7 +32,7 @@ curl http://localhost:9000/actuator/health
 
 ## Register User
 
-Api to register a new user
+API to register a new user
 
 **Authorization**
 
@@ -81,7 +83,7 @@ curl -X POST \
 
 ## Obtain Access Token
 
-Api to obtain the access token (login)
+API to obtain the access token (login)
 
 **Authorization**
 
@@ -124,7 +126,7 @@ curl -X POST \
 
 ## User Profile Data
 
-Api to get logged user profile data
+API to get logged user profile data
 
 **Authorization**
 
@@ -171,7 +173,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" http://localhost:9000/user
 
 ## Check Access Token
 
-Api to check access token validity
+API to check access token validity
 
 **Authorization**
 
@@ -207,7 +209,7 @@ curl -u "clientId:clientSecret" http://localhost:9000/oauth/check_token?token=$A
 
 ## Refresh Token
 
-Api to regenerate both access and refresh token
+API to regenerate both access and refresh token
 
 **Authorization**
 

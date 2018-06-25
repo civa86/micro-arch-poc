@@ -1,10 +1,12 @@
-# Hash Service
+[Home](../../README.md) | [API Usage](README.md)
+
+# Hash Service REST API
 
 MicroService to hash strings.
 
 ## Generate UUID
 
-Api to generate a uuid
+API to generate a uuid
 
 **Authorization**
 
@@ -30,7 +32,7 @@ curl http://localhost:8081/uuid
 
 ## BCrypt String
 
-Api to encode a string with BCrypt algorithm.
+API to encode a string with BCrypt algorithm.
 
 **Authorization**
 

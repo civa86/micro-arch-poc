@@ -6,6 +6,8 @@ spring:
     url: jdbc:mysql://mysql:3306/auth_service?createDatabaseIfNotExist=true
     username: root
     password: root
+  flyway:
+    locations: classpath:/db/migration/schema
 
 eureka:
   client:

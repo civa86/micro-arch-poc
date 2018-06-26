@@ -12,6 +12,8 @@ services:
       interval: 10s
       timeout: 60s
       retries: 5
+    expose:
+      - "3306"
 
   # Eurea discovery service
   eureka:
@@ -22,6 +24,8 @@ services:
       interval: 30s
       timeout: 60s
       retries: 10
+    ports:
+      - "8761"
 
   # Edge gateway service
   edge:
@@ -40,6 +44,8 @@ services:
     volumes:
       - ./config/edge.props.yml:/service/application.yml:ro
       - ./config/logback.xml:/service/logback.xml:ro
+    ports:
+      - "8080"
 
   # Auth service
   auth:
@@ -60,6 +66,8 @@ services:
     volumes:
       - ./config/auth.props.yml:/service/application.yml:ro
       - ./config/logback.xml:/service/logback.xml:ro
+    expose:
+      - "9000"
 
   # Hash String service
   hash:
@@ -78,6 +86,8 @@ services:
     volumes:
       - ./config/hash.props.yml:/service/application.yml:ro
       - ./config/logback.xml:/service/logback.xml:ro
+    expose:
+      - "8081"
 
   # Photo service
   photo:
@@ -96,6 +106,8 @@ services:
     volumes:
       - ./config/photo.props.yml:/service/application.yml:ro
       - ./config/logback.xml:/service/logback.xml:ro
+    expose:
+      - "8082"
 
   # Elastic Search
   elasticsearch:
@@ -105,6 +117,9 @@ services:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
     volumes:
       - ./config/elk/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+    expose:
+      - "9200"
+      - "9300"
 
   # Losgstash
   logstash:
@@ -117,6 +132,8 @@ services:
       - ./config/elk/pipeline:/usr/share/logstash/pipeline:ro
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    expose:
+      - "5000"
 
   # Kibana
   kibana:
@@ -126,3 +143,5 @@ services:
       - elasticsearch
     volumes:
       - ./config/elk/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+    ports:
+      - "5601"

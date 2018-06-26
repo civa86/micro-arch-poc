@@ -5,6 +5,11 @@ services:
   mysql:
     volumes:
       - persistent-data:/var/lib/mysql
+  elasticsearch:
+    volumes:
+      - ./config/elk/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - elk-data:/usr/share/elasticsearch/data
 
 volumes:
   persistent-data:
+  elk-data:

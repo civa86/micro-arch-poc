@@ -11,12 +11,20 @@ Proof of Concept of a Microservices Architecture.
 Learn how to run the architecture inside docker containers, call API, configure services and develop single parts independently.
 
 * Architecture Components
+    * Database
+        * [Docker MySql](/)
+        * [Flyway Migrations](/)
     * Infrastructure
         * [Eureka Service](/)
         * [Edge Service](/)
         * [Auth Service](/)
     * Microservices
         * [Hash Service](/)
+    * ELK Stack
+        * [Elastic Search](/)
+        * [Logstash](/)
+        * [Kibana](/)
+
 * [API Usage](docs/api/README.md)
 * [Run with Docker Compose](docs/docker-compose/README.md)
 * [Development](docs/development/README.md)

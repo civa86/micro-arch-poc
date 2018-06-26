@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import info.civa86.authservice.model.CustomUserDetails;
-import info.civa86.authservice.model.Users;
+import info.civa86.authservice.model.User;
 import info.civa86.authservice.repository.UsersRepository;
 
 @Service
@@ -21,18 +21,18 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        Optional<Users> usersOptional = usersRepository.findByEmail(email);
+        Optional<User> usersOptional = usersRepository.findByEmail(email);
 
         usersOptional.orElseThrow(() -> new UsernameNotFoundException("User not found!"));
         return usersOptional.map(CustomUserDetails::new).get();
     }
 
     public Boolean isEmailAlreadyRegistered(String email) {
-        Optional<Users> userFound = usersRepository.findByEmail(email);
+        Optional<User> userFound = usersRepository.findByEmail(email);
         return userFound.isPresent();
     }
 
-    public void saveUser(Users user) {
+    public void saveUser(User user) {
         usersRepository.save(user);
     }
 

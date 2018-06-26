@@ -8,10 +8,10 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("serial")
-public class CustomUserDetails extends Users implements UserDetails {
+public class CustomUserDetails extends User implements UserDetails {
 
-    public CustomUserDetails(final Users users) {
-        super(users);
+    public CustomUserDetails(final User user) {
+        super(user);
     }
 
     @Override

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import info.civa86.authservice.exceptions.EmailAlreadyPresentException;
 import info.civa86.authservice.model.CustomUserDetails;
 import info.civa86.authservice.model.Role;
-import info.civa86.authservice.model.Users;
+import info.civa86.authservice.model.User;
 import info.civa86.authservice.service.CustomUserDetailsService;
 import info.civa86.authservice.service.RoleService;
 
@@ -38,12 +38,12 @@ public class UserController {
 
     @PostMapping(value = "/user")
     @ResponseStatus(HttpStatus.CREATED)
-    public Users createUser(@RequestBody @Valid Users user) throws EmailAlreadyPresentException {
+    public User createUser(@RequestBody @Valid User user) throws EmailAlreadyPresentException {
         if (this.userService.isEmailAlreadyRegistered(user.getEmail()) == true) {
             throw new EmailAlreadyPresentException();
         }
 
-        Users newUser = new Users();
+        User newUser = new User();
         Set<Role> roles = new HashSet<Role>();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Role role = roleService.findRoleById(1);

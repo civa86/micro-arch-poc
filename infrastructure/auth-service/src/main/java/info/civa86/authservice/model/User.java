@@ -26,7 +26,7 @@ import org.hibernate.annotations.CreationTimestamp;
 @Entity
 @Table(name = "user")
 @SuppressWarnings("serial")
-public class Users implements Serializable {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,18 +62,18 @@ public class Users implements Serializable {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public Users() {
+    public User() {
     }
 
-    public Users(Users users) {
-        this.id = users.id;
-        this.email = users.email;
-        this.password = users.password;
-        this.firstName = users.firstName;
-        this.lastName = users.lastName;
-        this.active = users.active;
-        this.createdAt = users.createdAt;
-        this.roles = users.roles;
+    public User(User user) {
+        this.id = user.id;
+        this.email = user.email;
+        this.password = user.password;
+        this.firstName = user.firstName;
+        this.lastName = user.lastName;
+        this.active = user.active;
+        this.createdAt = user.createdAt;
+        this.roles = user.roles;
     }
 
     public int getId() {

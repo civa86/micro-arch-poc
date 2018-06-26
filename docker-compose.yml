@@ -23,7 +23,7 @@ services:
       test: "wget -q -T 1 -s http://localhost:8761/actuator/health"
       interval: 30s
       timeout: 60s
-      retries: 10
+      retries: 15
     ports:
       - "8761:8761"
 
@@ -37,7 +37,7 @@ services:
       test: "wget -q -T 1 -s http://localhost:8080/actuator/health"
       interval: 30s
       timeout: 60s
-      retries: 10
+      retries: 15
     depends_on:
       eureka:
         condition: service_healthy
@@ -57,7 +57,7 @@ services:
       test: "wget -q -T 1 -s http://localhost:9000/actuator/health"
       interval: 30s
       timeout: 60s
-      retries: 10
+      retries: 15
     depends_on:
       mysql:
         condition: service_healthy
@@ -79,7 +79,7 @@ services:
       test: "wget -q -T 1 -s http://localhost:8081/actuator/health"
       interval: 30s
       timeout: 60s
-      retries: 10
+      retries: 15
     depends_on:
       eureka:
         condition: service_healthy
@@ -99,7 +99,7 @@ services:
       test: "wget -q -T 1 -s http://localhost:8082/actuator/health"
       interval: 30s
       timeout: 60s
-      retries: 10
+      retries: 15
     depends_on:
       eureka:
         condition: service_healthy

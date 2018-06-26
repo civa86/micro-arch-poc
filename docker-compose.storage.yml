@@ -1,7 +1,6 @@
 version: '2.3'
 
 services:
-  # Database
   mysql:
     volumes:
       - persistent-data:/var/lib/mysql

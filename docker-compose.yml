@@ -69,7 +69,7 @@ services:
     expose:
       - "9000"
 
-  # Hash String service
+  # Hash service
   hash:
     build:
       context: microservices/hash-service/

@@ -4,31 +4,13 @@
 
 MicroService to manage Authentication with OAuth2, Users and Roles.
 
-## Get Service Status
+* [Register User](#register-user)
+* [Obtain Access Token](#obtain-access-token)
+* [User Profile Data](#user-profile-data)
+* [Check Access Token](#check-access-token)
+* [Refresh Token](#refresh-token)
 
-API to discover the service status.
-
-**Authorization**
-
-None
-
-**Request**
-
-GET /actuator/health
-
-**Response**
-
-```json
-{
-    "status": "UP"
-}
-```
-
-**Example CURL**
-
-```bash
-curl http://localhost:9000/actuator/health
-```
+---
 
 ## Register User
 
@@ -81,6 +63,8 @@ curl -X POST \
      http://localhost:9000/user
 ```
 
+---
+
 ## Obtain Access Token
 
 API to obtain the access token (login)
@@ -123,6 +107,8 @@ curl -X POST \
      -F "grant_type=password" \
      http://localhost:9000/oauth/token
 ```
+
+---
 
 ## User Profile Data
 
@@ -171,6 +157,8 @@ GET /user
 curl -H "Authorization: Bearer $ACCESS_TOKEN" http://localhost:9000/user
 ```
 
+---
+
 ## Check Access Token
 
 API to check access token validity
@@ -206,6 +194,8 @@ GET /oauth/check_token?token=$ACCESS_TOKEN
 ```bash
 curl -u "clientId:clientSecret" http://localhost:9000/oauth/check_token?token=$ACCESS_TOKEN
 ```
+
+---
 
 ## Refresh Token
 

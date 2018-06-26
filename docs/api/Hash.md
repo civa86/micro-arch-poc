@@ -4,13 +4,14 @@
 
 MicroService to hash strings.
 
+* [Generate UUID](#generate-uuid)
+* [BCrypt String](#bcrypt-string)
+
+---
+
 ## Generate UUID
 
 API to generate a uuid
-
-**Authorization**
-
-None
 
 **Request**
 
@@ -30,13 +31,11 @@ GET /uuid
 curl http://localhost:8081/uuid
 ```
 
+---
+
 ## BCrypt String
 
 API to encode a string with BCrypt algorithm.
-
-**Authorization**
-
-None
 
 **Request**
 

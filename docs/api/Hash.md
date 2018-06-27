@@ -1,4 +1,4 @@
-[Home](../../README.md) | [API Usage](README.md)
+[Home](../../README.md#documentation) | [API Usage](README.md)
 
 # Hash Service REST API
 

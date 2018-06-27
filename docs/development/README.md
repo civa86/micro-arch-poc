@@ -2,11 +2,19 @@
 
 # Development
 
-...
+Run third part services and discover server inside docker, with a development configuration and start microservices independently.
 
 ## Docker: mysql + eureka
 
-...
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml mysql eureka
+```
+
+## Docker: elk stack
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml elasticsearch logstash kibana
+```
 
 ## Spring Boot Development
 
@@ -38,15 +46,31 @@ cd <microservice_folder>
 ./mvnw spring-boot:run
 ```
 
-###### Configuration
+Microservice will run in `http://localhost:8080` by default but service port can be changed inside configuration properties.
 
-...
+###### Configuration Properties
 
-###### Networking
+All microservices configurations are saved inside `classpath:application.yml`
 
-...
+```bash
+.
+├── Dockerfile
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+└── src
+    ├── main
+    │   ├── java
+    │   └── resources
+    │       └── application.yml
+    └── test
+```
 
-## References and Tutorials
+Configuration can be externalized and can be different base on the running profile.
+
+Read official [documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html)
+
+## Spring Boot: References and Tutorials
 
 * https://developer.okta.com/blog/2017/06/15/build-microservices-architecture-spring-boot
 * http://callistaenterprise.se/blogg/teknik/2015/05/20/blog-series-building-microservices/

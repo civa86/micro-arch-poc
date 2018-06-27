@@ -25,14 +25,14 @@ Learn how to run the architecture inside docker containers, call API, configure 
         * [Database](docs/components/Database.md)
         * [(Eureka) Discovery Service](docs/components/Eureka.md)
         * [(Zuul) Edge Service](docs/components/Zuul.md)
-        * [(OAuth2) Auth Service](/)
+        * [(OAuth2) Auth Service](./)
     * Microservices
-        * [Hash Service](/)
-        * [Photo Service](/)
+        * [Hash Service](./)
+        * [Photo Service](./)
     * ELK Stack
-        * [Elastic Search](/)
-        * [Logstash](/)
-        * [Kibana](/)
+        * [Elastic Search](./)
+        * [Logstash](./)
+        * [Kibana](./)
 
 * [API Usage](docs/api/README.md)
 * [Docker Compose](docs/docker-compose/README.md)

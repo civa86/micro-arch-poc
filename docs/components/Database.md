@@ -46,17 +46,19 @@ Inside Microservices [FlyWay](https://flywaydb.org/) is used to migrate database
 Default path for flyway migrations
 
 ```
-classpath::/db/migration
+classpath:db/migration
 ```
 
 **Auth Service** has two separate folders to create `schema` and `data`
 
 ```
-classpath:/db/migration/schema
-classpath::/db/migration/data
+classpath:db/migration/schema
+classpath:db/migration/data
 ```
 
-Data contains some users and roles to start a development environment without the need to run any query.
+The folder `schema` contains table structures and insertion of roles that are available in this P.O.C.
+
+The folder `data` contains some insert statements to start a development environment with 2 kind of users already created: 1 User and 1 Administrator.
 
 ## FlyWay Configuration
 
@@ -65,7 +67,7 @@ Data contains some users and roles to start a development environment without th
 Every Microservice have its own `application.yml` file
 
 ```
-classpath::/application.yml
+classpath:application.yml
 ```
 
 ###### Properties

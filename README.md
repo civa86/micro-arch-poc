@@ -10,7 +10,7 @@ Proof of Concept of a Microservices Architecture.
 
 **Docker Environment**
 * Dedicated RAM 4GB+
-* Client Version 17.12+
+* Client 17.12+
 * Server Engine 17.12+
 
 **Spring Boot Development**
@@ -23,9 +23,9 @@ Learn how to run the architecture inside docker containers, call API, configure 
 * Architecture Components
     * Infrastructure
         * [Database](docs/components/Database.md)
-        * [Eureka Service](docs/components/Eureka.md)
-        * [Edge Service](/)
-        * [Auth Service](/)
+        * [(Eureka) Discovery Service](docs/components/Eureka.md)
+        * [(Zuul) Edge Service](docs/components/Zuul.md)
+        * [(OAuth2) Auth Service](/)
     * Microservices
         * [Hash Service](/)
         * [Photo Service](/)
@@ -35,7 +35,7 @@ Learn how to run the architecture inside docker containers, call API, configure 
         * [Kibana](/)
 
 * [API Usage](docs/api/README.md)
-* [Run with Docker Compose](docs/docker-compose/README.md)
+* [Docker Compose](docs/docker-compose/README.md)
 * [Development](docs/development/README.md)
 
 ---

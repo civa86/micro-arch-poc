@@ -1,8 +1,8 @@
 [Home](../../README.md)
 
-# Eureka
+# [Eureka] Discovery Service
 
-Eureka is a **Service Discovery** server, part of the Netflix OSS.
+Service registry for resilient mid-tier load balancing and failover.
 
 **Official Repository**
 

@@ -1,10 +1,6 @@
 [Home](../../README.md)
 
-# ELK Stack
-
-ELK Stack is user for logs centralization and analysis.
-
-## Elastic Search
+# Elastic Search
 
 Distributed, RESTful Search Engine.
 
@@ -18,7 +14,7 @@ Distributed, RESTful Search Engine.
 
 ---
 
-## Logstash
+# Logstash
 
 Transport and process logs, events, or other data.
 
@@ -36,7 +32,7 @@ Spring Boot microservices can send logs through the [logstash logback appender](
 
 ---
 
-## Kibana
+# Kibana
 
 Analytics and search dashboard for Elasticsearch.
 

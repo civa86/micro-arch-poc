@@ -31,7 +31,7 @@ Learn how to run the architecture inside docker containers, call API, configure 
         * [Database](docs/components/Database.md)
         * [(Eureka) Discovery Service](docs/components/Eureka.md)
         * [(Zuul) Edge Service](docs/components/Zuul.md)
-        * [(OAuth2) Auth Service](./)
+        * [Authentication Service](./)
     * Microservices
         * [Hash Service](./)
         * [Photo Service](./)

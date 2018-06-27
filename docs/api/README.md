@@ -8,10 +8,10 @@ In this API documentation, microservices are not authenticated and supposed to r
 
 **Assumptions**:
 
-* Every `Microservice` is public, no need of `User Authentication`
-* `Microservice` port is exposed on the machine `localhost`
+* Every `microservice` is public, no need of `User Authentication`
+* `microservice` port is exposed on the machine `localhost`
 
-When Microservices run behind **Edge Service** and inside the **docker-compose** environment, they have full protection and private networking communication.
+When microservices run behind **Edge Service** and inside the **docker-compose** environment, they have full protection and private networking communication.
 
 ## Contents
 

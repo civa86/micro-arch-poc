@@ -2,7 +2,9 @@
 
 # Development
 
---> Run third part services and discover server inside docker, with a development configuration and start microservices independently.
+Any microservice can be implemented independently, running only need parts instad of the complete architecture.
+
+Learn how to run single parts with `docker-compose` and  `maven-wrapper`.
 
 ## Docker
 
@@ -10,9 +12,9 @@ Development of any microservice may need some ancillary services running aside.
 
 Use `docker-compose` to start containers depending on development needs, for example:
 
-* Microservice with database persistence
-* Avoid discovery clients exception because they don't find the server
-* Logs transmission and analysis
+* microservice with database persistence
+* avoid discovery clients exception because they don't find the server
+* logs transmission and analysis
 
 ### Database
 
@@ -54,7 +56,7 @@ docker-compose -f docker-compose.yml -f docker-compose.dev.yml down -v
 
 ---
 
-## Spring Boot Development
+## Spring Boot
 
 Create a new microservice with Spring Boot
 
@@ -84,7 +86,7 @@ cd <microservice_folder>
 ./mvnw spring-boot:run
 ```
 
-Microservice will run in `http://localhost:8080` by default but service port can be changed inside configuration properties.
+microservice will run in `http://localhost:8080` by default but service port can be changed inside configuration properties.
 
 #### Configuration Properties
 

@@ -19,7 +19,7 @@ password: root
 
 ## Migrations
 
-If a Microservice has database persistence, [FlyWay](https://flywaydb.org/) is used to migrate database structure and data.
+If a microservice has database persistence, [FlyWay](https://flywaydb.org/) is used to migrate database structure and data.
 
 ###### Migration Path
 

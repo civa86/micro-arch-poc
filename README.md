@@ -6,6 +6,16 @@ Proof of Concept of a Microservices Architecture.
 * Log centralization with [ELK Stack](https://www.elastic.co/elk-stack)
 * Architecture running inside [Docker](https://www.docker.com/) with [Docker Compose](https://docs.docker.com/compose/)
 
+## Requirements
+
+**Docker Environment**
+* Dedicated RAM 4GB+
+* Client Version 17.12+
+* Server Engine 17.12+
+
+**Spring Boot Development**
+* Java 1.8+
+
 ## Documentation
 
 Learn how to run the architecture inside docker containers, call API, configure services and develop single parts independently.

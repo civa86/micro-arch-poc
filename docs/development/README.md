@@ -2,19 +2,57 @@
 
 # Development
 
-Run third part services and discover server inside docker, with a development configuration and start microservices independently.
+--> Run third part services and discover server inside docker, with a development configuration and start microservices independently.
 
-## Docker: mysql + eureka
+## Docker
+
+Development of any microservice may need some ancillary services running aside.
+
+Use `docker-compose` to start containers depending on development needs, for example:
+
+* Microservice with database persistence
+* Avoid discovery clients exception because they don't find the server
+* Logs transmission and analysis
+
+### Database
+
+Exposed port: `13306`.
+
+No Data Persistence.
 
 ```bash
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml mysql eureka
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d mysql
 ```
 
-## Docker: elk stack
+### Eureka
+
+Exposed port: `8761`.
+
+Web Interface URL: [`http://localhost:8761`](http://localhost:8761).
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d eureka
+```
+
+### ELK stack
+
+Exposed port (logstash): `5000`.
+
+Web Interface URL (kibana): [`http://localhost:5601`](http://localhost:5601).
 
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml elasticsearch logstash kibana
 ```
+
+### Stop All containers
+
+Stop all running containers and remove created volumes in order to clean for the next run.
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml down -v
+```
+
+---
 
 ## Spring Boot Development
 
@@ -48,7 +86,7 @@ cd <microservice_folder>
 
 Microservice will run in `http://localhost:8080` by default but service port can be changed inside configuration properties.
 
-###### Configuration Properties
+#### Configuration Properties
 
 All microservices configurations are saved inside `classpath:application.yml`
 
@@ -70,7 +108,7 @@ Configuration can be externalized and can be different base on the running profi
 
 Read official [documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html)
 
-## Spring Boot: References and Tutorials
+#### References and Tutorials
 
 * https://developer.okta.com/blog/2017/06/15/build-microservices-architecture-spring-boot
 * http://callistaenterprise.se/blogg/teknik/2015/05/20/blog-series-building-microservices/

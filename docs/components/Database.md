@@ -2,44 +2,24 @@
 
 # Database
 
-MySql Database instance run with docker.
+MySql Database instance runs in a docker container.
 
-Image used is the [official mysql image](https://hub.docker.com/_/mysql/)
+No instances are required to be manually installed in the host machine.
+
+[Official MySql Image](https://hub.docker.com/_/mysql/)
+
+#### Credentials
+
+Password for root user is set by the ENV Variable `MYSQL_ROOT_PASSWORD` defined in the `docker-compose.yml` file.
 
 ```
 username: root
 password: root
 ```
 
-## Development
-
-By default mysql run without exposing port. It listens to the 3306 but only inside the docker private network.
-
-In development process an exposed port is needed and there is a docker compose dev file to override the default values.
-
-###### Start Service
-
-```bash
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d mysql
-```
-
-###### Stop Service
-
-```bash
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml down -v
-```
-
-#### Exposed Port
-
-In development mode mysql listens to port `13306`.
-
-Port is not the default one in order to avoid collision with other mysql instances running in the system.
-
-If you have some service that already use the `13306` port, change this configuration inside `docker-compose.dev.yml`
-
 ## Migrations
 
-Inside Microservices [FlyWay](https://flywaydb.org/) is used to migrate database structure and data.
+If a Microservice has database persistence, [FlyWay](https://flywaydb.org/) is used to migrate database structure and data.
 
 ###### Migration Path
 
@@ -62,15 +42,9 @@ The folder `data` contains some insert statements to start a development environ
 
 ## FlyWay Configuration
 
-#### Default
+FlyWay is configured inside spring application properties.
 
-Every Microservice have its own `application.yml` file
-
-```
-classpath:application.yml
-```
-
-###### Properties
+#### Properties List
 
 ```ini
 spring.flyway.baseline-description= #
@@ -111,9 +85,3 @@ spring.flyway.url= # JDBC url of the database to migrate. If not set, the primar
 spring.flyway.user= # Login user of the database to migrate.
 spring.flyway.validate-on-migrate= #
 ```
-
-#### Docker Override
-
-Properties can be overriden when running inside docker compose.
-
-A volume with override `application.yml` file is mounted for each service at the same level of the builded jar.

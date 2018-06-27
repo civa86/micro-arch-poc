@@ -40,9 +40,9 @@ Learn how to run the architecture inside docker containers, call API, configure 
         * [Logstash](./)
         * [Kibana](./)
 
-* [API Usage](docs/api/README.md)
-* [Docker Compose](docs/docker-compose/README.md)
 * [Development](docs/development/README.md)
+* [Docker Compose](docs/docker-compose/README.md)
+* [API Usage](docs/api/README.md)
 
 ## License
 

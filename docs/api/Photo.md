@@ -1,4 +1,4 @@
-[Home](../../README.md#documentation) | [API Usage](README.md)
+[Documentation](../../README.md#documentation) | [API Usage](README.md)
 
 # Photo Service REST API
 

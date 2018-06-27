@@ -1,4 +1,4 @@
-[Home](../../README.md#documentation)
+[Documentation](../../README.md#documentation)
 
 # [Eureka] Discovery Service
 

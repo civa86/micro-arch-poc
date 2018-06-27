@@ -34,7 +34,7 @@ services:
     environment:
       ELK_SERVICE_NAME: EDGE
     healthcheck:
-      test: "wget -q -T 1 http://localhost:8761/actuator/health -O /dev/null"
+      test: "wget -q -T 1 http://localhost:8080/actuator/health -O /dev/null"
       interval: 30s
       timeout: 60s
       retries: 15
@@ -54,7 +54,7 @@ services:
     environment:
       ELK_SERVICE_NAME: AUTH
     healthcheck:
-      test: "wget -q -T 1 http://localhost:8761/actuator/health -O /dev/null"
+      test: "wget -q -T 1 http://localhost:9000/actuator/health -O /dev/null"
       interval: 30s
       timeout: 60s
       retries: 15
@@ -76,7 +76,7 @@ services:
     environment:
       ELK_SERVICE_NAME: HASH
     healthcheck:
-      test: "wget -q -T 1 http://localhost:8761/actuator/health -O /dev/null"
+      test: "wget -q -T 1 http://localhost:8081/actuator/health -O /dev/null"
       interval: 30s
       timeout: 60s
       retries: 15
@@ -96,7 +96,7 @@ services:
     environment:
       ELK_SERVICE_NAME: PHOTO
     healthcheck:
-      test: "wget -q -T 1 http://localhost:8761/actuator/health -O /dev/null"
+      test: "wget -q -T 1 http://localhost:8082/actuator/health -O /dev/null"
       interval: 30s
       timeout: 60s
       retries: 15

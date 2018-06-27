@@ -36,9 +36,9 @@ Learn how to run the architecture inside docker containers, call API, configure 
         * [Hash Service](./)
         * [Photo Service](./)
     * ELK Stack
-        * [Elastic Search](./)
-        * [Logstash](./)
-        * [Kibana](./)
+        * [Elastic Search](docs/components/ELK.md#elastic-search)
+        * [Logstash](docs/components/ELK.md#logstash)
+        * [Kibana](docs/components/ELK.md#kibana)
 
 * [Development](docs/development/README.md)
 * [Docker Compose](docs/docker-compose/README.md)

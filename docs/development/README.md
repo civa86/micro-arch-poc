@@ -92,7 +92,7 @@ microservice will run in `http://localhost:8080` by default but service port can
 
 All microservices configurations are saved inside `classpath:application.yml`
 
-```bash
+```
 .
 ├── Dockerfile
 ├── mvnw

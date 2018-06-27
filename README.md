@@ -16,6 +16,12 @@ Proof of Concept of a Microservices Architecture.
 **Spring Boot Development**
 * Java 1.8+
 
+---
+
+![architecture](docs/architecture.jpg 'Architecture Scheme')
+
+---
+
 ## Documentation
 
 Learn how to run the architecture inside docker containers, call API, configure services and develop single parts independently.
@@ -38,8 +44,6 @@ Learn how to run the architecture inside docker containers, call API, configure 
 * [Docker Compose](docs/docker-compose/README.md)
 * [Development](docs/development/README.md)
 
----
+## License
 
-## Architecture Scheme
-
-![architecture](docs/architecture.jpg 'Architecture Scheme')
+MIT

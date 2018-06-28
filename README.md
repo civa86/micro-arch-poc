@@ -27,18 +27,15 @@ Proof of Concept of a Microservices Architecture.
 Learn how to run the architecture inside docker containers, call API, configure services and develop single parts independently.
 
 * Architecture Components
-    * Infrastructure
-        * [Database](docs/components/Database.md)
-        * [(Eureka) Discovery Service](docs/components/Eureka.md)
-        * [(Zuul) Edge Service](docs/components/Zuul.md)
-        * [Authentication Service](./)
-    * Microservices
-        * [Hash Service](./)
-        * [Photo Service](./)
-    * ELK Stack
-        * [Elastic Search](docs/components/ELK.md#elastic-search)
-        * [Logstash](docs/components/ELK.md#logstash)
-        * [Kibana](docs/components/ELK.md#kibana)
+    * [Database](docs/components/Database.md)
+    * [(Eureka) Discovery Service](docs/components/Eureka.md)
+    * [(Zuul) Edge Service](docs/components/Zuul.md)
+    * [Authentication Service](docs/components/Auth.md)
+    * [Generic Spring Boot Microservice](docs/components/SpringBootMS.md)
+* ELK Stack
+    * [Elastic Search](docs/components/ELK.md#elastic-search)
+    * [Logstash](docs/components/ELK.md#logstash)
+    * [Kibana](docs/components/ELK.md#kibana)
 
 * [Development](docs/development/README.md)
 * [Docker Compose](docs/docker-compose/README.md)
@@ -46,4 +43,4 @@ Learn how to run the architecture inside docker containers, call API, configure 
 
 ## License
 
-MIT
+MIT.

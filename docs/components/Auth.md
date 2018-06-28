@@ -12,7 +12,7 @@ Spring Security is used to manage OAuth2 tokens.
 
 Enabled grant types are: `password` and `refresh_token`.
 
-Read about [OAuth2 grant types](https://oauth.net/2/grant-types/) to change authentication behavior
+Read more about [OAuth2 grant types](https://oauth.net/2/grant-types/) to change authentication behavior
 
 ## Client Credentials
 
@@ -36,7 +36,7 @@ Application starts with 2 pre-built roles:
 | Id | Role  |
 | -- | ----- |
 | 1  | USER  |
-| 2  | ADMiN |
+| 2  | ADMIN |
 
 ## Development Accounts
 

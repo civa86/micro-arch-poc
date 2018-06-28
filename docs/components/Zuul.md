@@ -8,7 +8,7 @@ Gateway that provides dynamic routing, monitoring, resiliency, security, and mor
 
 [`https://github.com/Netflix/zuul`](https://github.com/Netflix/zuul)
 
-## Networking
+## Routing
 
 Edge Service is the single entrypoint to access API.
 

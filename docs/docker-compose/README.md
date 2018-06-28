@@ -2,21 +2,47 @@
 
 # Docker Compose
 
-Run inside docker with compose.
+Run docker containers with compose.
 
-For compose commands refer to the [official documentation](https://docs.docker.com/compose/)
+[Official Documentation](https://docs.docker.com/compose/)
 
-Examples:
+#### Build All Images
 
 ```bash
-# Run database and eureka (dev mode)
-docker-compose up -d mysql eureka
+docker-compose build
+```
 
-# Run full architecture
+#### Default Architecture
+
+```bash
+# Start
 docker-compose up -d
 
-# Shutdown and destroy storages
-docker-compose down -v
+# Stop
+docker-compose down
+```
+
+#### Development Configuration
+
+```bash
+# Start
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+
+# Stop
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml down
+```
+
+#### Persistent Storage
+
+```bash
+# Start
+docker-compose -f docker-compose.yml -f docker-compose.storage.yml up -d
+
+# Stop
+docker-compose -f docker-compose.yml -f docker-compose.storage.yml down
+
+# Stop and Clean
+docker-compose -f docker-compose.yml -f docker-compose.storage.yml down -v
 ```
 
 ## Environment Variables

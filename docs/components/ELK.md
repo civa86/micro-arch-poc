@@ -51,3 +51,7 @@ User interface to search and analyse logs.
 **Endpoint**
 
 [`http://localhost:5601`](http://localhost:5601)
+
+###### Screenshot
+
+![kibana-ui](assets/kibana-ui.png 'Kibana UI')

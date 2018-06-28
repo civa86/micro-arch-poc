@@ -18,4 +18,4 @@ User interface shows which service is connected and its status.
 
 ###### Screenshot
 
-![eureka-ui](eureka-ui.png 'Eureka UI')
+![eureka-ui](assets/eureka-ui.png 'Eureka UI')

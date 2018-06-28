@@ -19,7 +19,11 @@ docker-compose up -d
 docker-compose down -v
 ```
 
-## External Service Configuration
+## Environment Variables
+
+...
+
+## Service Configuration
 
 #### Logs configuration
 

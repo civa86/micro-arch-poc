@@ -73,21 +73,48 @@ Some containers are configured and tweaked with environment variables:
 
 ## Service Configuration
 
+Containers are externally configured in different ways.
+
+External configurations give the possibility to change settings without rebuilding the docker image.
+
 #### Logs configuration
 
-...
+Inside the running architecture logs are managed by [Logback](https://logback.qos.ch/).
+
+Logs are not saved to file but directly sent to the listening logstash instance with the right [appender](https://github.com/logstash/logstash-logback-encoder).
+
+###### Configuration file
+
+```
+.
+├── config
+│   └── logback.xml
+```
 
 #### Spring Boot Application Properties
 
 Properties can be extended or overriden when services run inside `docker-compose`.
 
-Mount a volume with an `application.yml` file placed at the same level of the service jar,
+In the `config` folder there is a file for every service that need overrides.
 
-Spring Boot will automatically merge external file properties with internal ones.
+###### Configuration files
+
+```
+.
+├── config
+│   ├── auth.props.yml
+│   ├── edge.props.yml
+│   ├── hash.props.yml
+│   └── photo.props.yml
+```
+
+For each service mount a volume with the configuration file placed at the same level of the service jar.
+
+Remember to rename them in `application.yml` so Spring Boot will automatically merge external file properties with internal ones.
 
 ###### Docker container working directory
 
-```bash
+```
 .
 ├── application.yml
 └── svc.jar
@@ -95,4 +122,17 @@ Spring Boot will automatically merge external file properties with internal ones
 
 #### ELK configuration
 
-...
+ELK containers have their configuration files mounted within docker volumes.
+
+###### Configuration files
+
+```
+.
+├── config
+│   ├── elk
+│   │   ├── elasticsearch.yml
+│   │   ├── kibana.yml
+│   │   ├── logstash.yml
+│   │   └── pipeline
+│   │       └── logstash.conf
+```

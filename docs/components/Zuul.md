@@ -28,9 +28,47 @@ It receives all requests, check on user authentication with a Remote Token Servi
 
 Edge service has a `@EnableResourceServer` annotation to enable routes authentication.
 
-Every policy is written inside the `ResourceServerConfigurerAdapter` configuration class.
+All routes behind Edge Service are protected, only actuator endpoints are exposed without checking for an access token.
 
-By default all routes are protected, only actuator endpoints are exposed without checking for an access token.
+If a specific role is required for a URL, configration can be written in `application.yml`
+
+```yml
+zuul:
+  auth:
+    rules:
+      - RULE_KEY:
+          path: SERVICE_PATH
+          role: REUIRED_ROLE
+      - ...
+      - ...
+```
+
+## Zuul Configuration
+
+This is the zuul configuration inside the edge-service `application.yml` properties.
+
+```yml
+zuul:
+  routes:
+    uaa:
+      path: /uaa/**
+      sensitive-headers: true
+      serviceId: auth-service
+    hash:
+      path: /hash-service/**
+      serviceId: hash-service
+    photo:
+      path: /photo-service/**
+      serviceId: photo-service
+  auth:
+    rules:
+      - hash:
+          path: /hash-service/**
+          role: USER
+      - photo:
+          path: /photo-service/**
+          role: USER
+```
 
 ## Remote Token Service
 

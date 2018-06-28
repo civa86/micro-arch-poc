@@ -43,3 +43,12 @@ zuul:
     photo:
       path: /photo-service/**
       serviceId: photo-service
+  # Authentication Policy Rules
+  auth:
+    rules:
+      - hash:
+          path: /hash-service/**
+          role: USER
+      - photo:
+          path: /photo-service/**
+          role: USER

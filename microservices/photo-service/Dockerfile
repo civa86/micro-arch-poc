@@ -20,4 +20,4 @@ RUN mkdir /service
 COPY --from=builder /build/target/$ARTIFACT /service/svc.jar
 EXPOSE $PORT
 WORKDIR /service
-CMD ["java", "-jar", "svc.jar"]
+CMD java $JAVA_OPTIONS -jar svc.jar

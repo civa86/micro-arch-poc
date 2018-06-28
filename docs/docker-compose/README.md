@@ -6,13 +6,13 @@ Run docker containers with compose.
 
 [Official Documentation](https://docs.docker.com/compose/)
 
-#### Build All Images
+## Build Docker Images
 
 ```bash
 docker-compose build
 ```
 
-#### Default Architecture
+## Default Architecture
 
 ```bash
 # Start
@@ -22,7 +22,11 @@ docker-compose up -d
 docker-compose down
 ```
 
-#### Development Configuration
+## Development Configuration
+
+Apply `dev` overrides to expose ports of some services that otherwise are private.
+
+Read more on [Development Chapter](../development/README.md#docker)
 
 ```bash
 # Start
@@ -32,7 +36,9 @@ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml down
 ```
 
-#### Persistent Storage
+## Data Persistence
+
+Apply `storage` overrides to create persistent volumes and maintain data between services reboot.
 
 ```bash
 # Start
@@ -47,7 +53,23 @@ docker-compose -f docker-compose.yml -f docker-compose.storage.yml down -v
 
 ## Environment Variables
 
-...
+Some containers are configured and tweaked with environment variables:
+
+| Container     | Variable            | Value              | Description                   |
+| ------------- | ------------------- | ------------------ | ----------------------------- |
+| mysql         | MYSQL_ROOT_PASSWORD | root               | Password for the root user    |
+| eureka        | JAVA_OPTIONS        | -Xmx256m -Xms256m  | JVM options                   |
+| edge          | ELK_SERVICE_NAME    | EDGE               | Logstash application property |
+| edge          | JAVA_OPTIONS        | -Xmx256m -Xms256m  | JVM options                   |
+| auth          | ELK_SERVICE_NAME    | AUTH               | Logstash application property |
+| auth          | JAVA_OPTIONS        | -Xmx256m -Xms256m  | JVM options                   |
+| hash          | ELK_SERVICE_NAME    | HASH               | Logstash application property |
+| hash          | JAVA_OPTIONS        | -Xmx256m -Xms256m  | JVM options                   |
+| photo         | ELK_SERVICE_NAME    | PHOTO              | Logstash application property |
+| photo         | JAVA_OPTIONS        | -Xmx256m -Xms256m  | JVM options                   |
+| elasticsearch | ES_JAVA_OPTS        | -Xmx256m -Xms256m  | JVM options                   |
+| logstash      | LS_JAVA_OPTS        | -Xmx256m -Xms256m  | JVM options                   |
+| kibana        | -                   | -                  | -                             |
 
 ## Service Configuration
 
@@ -72,9 +94,5 @@ Spring Boot will automatically merge external file properties with internal ones
 ```
 
 #### ELK configuration
-
-...
-
-## Data Persistence
 
 ...

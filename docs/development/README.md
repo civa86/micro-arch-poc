@@ -108,7 +108,9 @@ All microservices configurations are saved inside `classpath:application.yml`
 
 Configuration can be externalized and can be different base on the running profile.
 
-Read official [documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html)
+[Common Application Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
+
+[External Configuration Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html)
 
 #### References and Tutorials
 
